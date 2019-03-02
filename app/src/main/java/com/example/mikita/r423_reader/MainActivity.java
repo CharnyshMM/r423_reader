@@ -36,7 +36,62 @@ public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
     private static final int MAXIMUM_TEXT_ZOOM = 150;
     private static final int MINIMUM_TEXT_ZOOM = 50;
+
+    private static final String JsScripts =
+            "function scrollToElement(id) {\n" +
+            "        var elem = document.getElementById(id);\n" +
+            "        console.log(elem);\n" +
+            "        elem.scrollIntoView(true);\n" +
+            "    }" +
+            "(function() {\n" +
+            "        function getChapters() {\n" +
+            "        let resultArr = [];\n" +
+            "        let idsArr = [];\n" +
+            "        let hArr = getChaptersTags();\n" +
+            "        if (hArr === null || hArr.length === 0) return ;\n" +
+            "        let retText = \"\";\n" +
+            "        let size = hArr.length;\n" +
+            "        for (let i=0; i < size; i++) {\n" +
+            "        if (!isNaN(+hArr[i].innerText.substr(0,1))) {\n" +
+            "        if (retText !== \"\") {\n" +
+            "        resultArr.push(retText);\n" +
+            "        retText = \"\";\n" +
+            "        }\n" +
+            "        let id = generateId();\n" +
+            "        hArr[i].setAttribute(\"id\", id);\n" +
+            "        idsArr.push(id);\n" +
+            "        retText += hArr[i].innerText;\n" +
+            "        } else {\n" +
+            "        retText += \" \" + hArr[i].innerText;\n" +
+            "        }\n" +
+            "        if (i === size-1) {\n" +
+            "        resultArr.push(retText);\n" +
+            "        }\n" +
+            "        }\n" +
+            "        console.log(\"SCRIPT IS RUNNING!!!!\");\n" +
+            "        return addToJson(idsArr, resultArr);\n" +
+            "        }\n" +
+            "        function addToJson(ids, texts) {\n" +
+            "        if (ids===null || texts===null || ids.length!==texts.length) {\n" +
+            "        throw new DOMException(\"ids size != texts size\");\n" +
+            "        }\n" +
+            "        let objects = [];\n" +
+            "        for (let i=0; i < ids.length; i++) {\n" +
+            "        objects.push({id: ids[i], text: texts[i]});\n" +
+            "        }\n" +
+            "            return objects;\n" +
+            "        }\n" +
+            "        function getChaptersTags() {\n" +
+            "            return Array.prototype.slice.call(document.querySelectorAll(\"h1, h2, h3, .MsoTitle\"));\n" +
+            "        }\n" +
+            "        function generateId () {\n" +
+            "            return \"_\" + Math.random().toString(36).substr(2, 9);\n" +
+            "        }\n" +
+            "        return getChapters();\n" +
+            "        }());";
+
     WebView webView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,7 +106,7 @@ public class MainActivity extends AppCompatActivity {
             webView.loadUrl("file:///android_asset/books/"+bookName+"/index.htm");
             setTitle(bookName);
         } else {
-            webView.loadUrl("file:///android_asset/books/Р423/index.htm");
+            webView.loadUrl("file:///android_asset/books/Р423_ГЛАВА2/index.htm");
         }
 
         webView.setWebViewClient(new WebViewClient() {
@@ -71,7 +126,8 @@ public class MainActivity extends AppCompatActivity {
 
     public void getChaptersJson() {
         Log.d(TAG, "getChaptersJson:  ");
-        webView.evaluateJavascript("javascript:getGlobalContents()", new ValueCallback<String>() {
+        webView.evaluateJavascript("javascript:" + this.JsScripts
+                , new ValueCallback<String>() {
             @TargetApi(Build.VERSION_CODES.HONEYCOMB)
             @Override
             public void onReceiveValue(String s) {
@@ -132,7 +188,6 @@ public class MainActivity extends AppCompatActivity {
         if (requestCode == CONTENTS_ACTIVITY_RESULT) {
             if (resultCode == RESULT_OK) {
                 String headerId = data.getExtras().getString("HeaderID", null);
-                Log.d(TAG, "is headerId == null??: "+headerId);
                 if (headerId != null) {
                     Log.d(TAG, "onActivityResult: headerId != null "+headerId);
                     webView.evaluateJavascript("javascript:scrollToElement('"+headerId+"')", new ValueCallback<String>() {
