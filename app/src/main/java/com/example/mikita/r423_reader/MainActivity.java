@@ -63,11 +63,11 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    public String getLastReadBook() {
-        Context context = getApplicationContext();
-        SharedPreferences sharedPref = context.getSharedPreferences(
-                getString(R.string.preference_file_key), Context.MODE_PRIVATE);
-    }
+//    public String getLastReadBook() {
+//        Context context = getApplicationContext();
+//        SharedPreferences sharedPref = context.getSharedPreferences(
+//                getString(R.string.preference_file_key), Context.MODE_PRIVATE);
+//    }
 
     public void getChaptersJson() {
         Log.d(TAG, "getChaptersJson:  ");
