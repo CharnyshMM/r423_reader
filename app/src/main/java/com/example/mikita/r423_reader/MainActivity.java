@@ -4,6 +4,7 @@ import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.AssetManager;
 import android.os.Build;
 import android.util.JsonToken;
 import android.util.JsonReader;
@@ -25,6 +26,7 @@ import com.google.gson.reflect.TypeToken;
 
 import java.io.IOException;
 import java.io.StringReader;
+import java.lang.reflect.Array;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
@@ -36,6 +38,8 @@ public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
     private static final int MAXIMUM_TEXT_ZOOM = 150;
     private static final int MINIMUM_TEXT_ZOOM = 50;
+    private static final String ANDROID_ASSET_PATH_START = "file:///android_asset/";
+    private static final String BOOKS_ASSET_PATH = "file:///android_asset/books/";
 
     private static final String JsScripts =
             "function scrollToElement(id) {\n" +
@@ -101,12 +105,12 @@ public class MainActivity extends AppCompatActivity {
         webSettings.setJavaScriptEnabled(true);
         Intent i = getIntent();
         String bookName = i.getStringExtra("directory");
-        Log.d(TAG, "onCreate: book path "+bookName);
+
+        bookName = getBookPathToOpen(null);
+
         if (bookName != null) {
-            webView.loadUrl("file:///android_asset/books/"+bookName+"/index.htm");
+            webView.loadUrl(bookName);
             setTitle(bookName);
-        } else {
-            webView.loadUrl("file:///android_asset/books/Р423_ГЛАВА2/index.htm");
         }
 
         webView.setWebViewClient(new WebViewClient() {
@@ -125,6 +129,7 @@ public class MainActivity extends AppCompatActivity {
 //    }
 
     public void getChaptersJson() {
+        // this code is to run JavaScript code from the string above and get its result
         Log.d(TAG, "getChaptersJson:  ");
         webView.evaluateJavascript("javascript:" + this.JsScripts
                 , new ValueCallback<String>() {
@@ -137,6 +142,52 @@ public class MainActivity extends AppCompatActivity {
                 CurrentBookStorage.getInstance().setChapters(chapterList);
             }
         });
+    }
+
+    public String getBookPathToOpen(String lastOpenedBookPath) {
+        // if lastOpenedBookPath is null, than returning first book in books
+        // for the first book drilling down till index file found.
+
+        /*
+        * ASSETS FOLDER STRUCTURE:
+        *   android_asset/
+        *                  book_name/
+        *                           chapter_1_name/
+        *                                          index.htm
+        *                                         / *
+        * */
+        if (lastOpenedBookPath != null) {
+            return lastOpenedBookPath;
+        }
+        AssetManager assetManager = getAssets();
+        try {
+            StringBuilder currentPath = new StringBuilder("books");
+            String[] assetFiles = assetManager.list("books");
+            if (assetFiles == null) {
+                throw new Exception("No books found in assets!");
+            }
+            boolean indexFound = false;
+            while (!indexFound) {
+                // sorry, I didn't found a better way to check if the entry is file or directory
+                // so if I didn't found index.htm, than I open first found file as a directory
+                for (String file: assetFiles) {
+                    if (file.endsWith("index.htm")) {
+                        currentPath.append("/");
+                        currentPath.append(file);
+                        return ANDROID_ASSET_PATH_START + currentPath.toString();
+                    }
+                }
+                currentPath.append("/");
+                currentPath.append(assetFiles[0]);
+                assetFiles = assetManager.list(currentPath.toString());
+            }
+        } catch (IOException e) {
+            // show error dialog
+            e.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null; // if nothing found... not a good idea for error handling
     }
 
     @Override

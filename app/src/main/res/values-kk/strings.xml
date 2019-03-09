@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">R423_reader</string>
+    <string name="app_name">Р-423</string>
     <string name="increase_text_string">Мәтінді үлкейту</string>
     <string name="decrease_text_string">Мәтінді азайту</string>
     <string name="contents_string">Мазмұн</string>
@@ -8,4 +8,5 @@
     <string name="error_title">қате</string>
     <string name="error_message_no_chapters_generated">Бұл кітап үшін мазмұн кестесін құрастыру сәтсіз аяқталды.
     </string>
+    <string name="title_activity_books">Кітаптар</string>
 </resources>

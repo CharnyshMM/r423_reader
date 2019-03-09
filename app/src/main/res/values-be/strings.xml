@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">R423_reader</string>
+    <string name="app_name">Р-423</string>
     <string name="increase_text_string">Павялічыць тэкст</string>
     <string name="decrease_text_string">Паменьшыць тэкст</string>
     <string name="contents_string">Змест</string>
     <string name="books_string">Кнігі</string>
     <string name="error_title">Памылка</string>
     <string name="error_message_no_chapters_generated">Не атрымалася сабраць змест для гэтай кнігі</string>
+    <string name="title_activity_books">Кнігі</string>
 </resources>

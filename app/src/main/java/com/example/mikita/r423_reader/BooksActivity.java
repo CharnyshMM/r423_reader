@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.content.res.AssetManager;
 import android.os.Bundle;
 import android.widget.Button;
+import android.widget.ExpandableListView;
 import android.widget.LinearLayout;
 import androidx.core.widget.NestedScrollView;
 import androidx.appcompat.app.AppCompatActivity;
@@ -24,9 +25,7 @@ public class BooksActivity extends AppCompatActivity {
         setContentView(R.layout.activity_books);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
         booksScrollView = findViewById(R.id.books_linearLayout);
-        ArrayList<File> inFiles = new ArrayList<File>();
 
         AssetManager assetManager = getAssets();
         String[] files = new String[0];
@@ -36,7 +35,10 @@ public class BooksActivity extends AppCompatActivity {
             e.printStackTrace();
         }
 
+
+
         for (final String file:files) {
+
             Button button = new Button(getApplicationContext());
             button.setText(file);
             button.setOnClickListener(new View.OnClickListener() {
@@ -55,4 +57,5 @@ public class BooksActivity extends AppCompatActivity {
             }
         }
     }
+
 }
