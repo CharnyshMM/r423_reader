@@ -38,8 +38,9 @@ public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
     private static final int MAXIMUM_TEXT_ZOOM = 150;
     private static final int MINIMUM_TEXT_ZOOM = 50;
-    private static final String ANDROID_ASSET_PATH_START = "file:///android_asset/";
-    private static final String BOOKS_ASSET_PATH = "file:///android_asset/books/";
+    private static final String ANDROID_ASSET_PATH_START = "file:///android_asset";
+    private static final String BOOKS_ASSET_PATH = "file:///android_asset/books";
+    private static final String BOOK_INDEX_FILENAME = "index.htm";
 
     private static final String JsScripts =
             "function scrollToElement(id) {\n" +
@@ -104,15 +105,15 @@ public class MainActivity extends AppCompatActivity {
         WebSettings webSettings = webView.getSettings();
         webSettings.setJavaScriptEnabled(true);
         Intent i = getIntent();
-        String bookName = i.getStringExtra("directory");
+        String book = i.getStringExtra("book");
+        String chapter = i.getStringExtra("chapter");
 
-        bookName = getBookPathToOpen(null);
 
-        if (bookName != null) {
-            webView.loadUrl(bookName);
-            setTitle(bookName);
-        }
+        String bookName = getBookPathToOpen(book, chapter);
+        setTitle(bookName);
 
+
+        webView.loadUrl(BOOKS_ASSET_PATH + "/" + bookName + BOOK_INDEX_FILENAME);
         webView.setWebViewClient(new WebViewClient() {
 
             public void onPageFinished(WebView view, String url) {
@@ -121,12 +122,6 @@ public class MainActivity extends AppCompatActivity {
         });
 
     }
-
-//    public String getLastReadBook() {
-//        Context context = getApplicationContext();
-//        SharedPreferences sharedPref = context.getSharedPreferences(
-//                getString(R.string.preference_file_key), Context.MODE_PRIVATE);
-//    }
 
     public void getChaptersJson() {
         // this code is to run JavaScript code from the string above and get its result
@@ -144,7 +139,7 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    public String getBookPathToOpen(String lastOpenedBookPath) {
+    public String getBookPathToOpen(String book, String chapter) {
         // if lastOpenedBookPath is null, than returning first book in books
         // for the first book drilling down till index file found.
 
@@ -156,12 +151,18 @@ public class MainActivity extends AppCompatActivity {
         *                                          index.htm
         *                                         / *
         * */
-        if (lastOpenedBookPath != null) {
-            return lastOpenedBookPath;
+
+        if (book != null && chapter != null) {
+            return book + "/" + chapter + "/";
         }
+
+        if (book != null) {
+            return book+ "/";
+        }
+
         AssetManager assetManager = getAssets();
         try {
-            StringBuilder currentPath = new StringBuilder("books");
+            StringBuilder currentPath = new StringBuilder();
             String[] assetFiles = assetManager.list("books");
             if (assetFiles == null) {
                 throw new Exception("No books found in assets!");
@@ -171,15 +172,14 @@ public class MainActivity extends AppCompatActivity {
                 // sorry, I didn't found a better way to check if the entry is file or directory
                 // so if I didn't found index.htm, than I open first found file as a directory
                 for (String file: assetFiles) {
-                    if (file.endsWith("index.htm")) {
-                        currentPath.append("/");
-                        currentPath.append(file);
-                        return ANDROID_ASSET_PATH_START + currentPath.toString();
+                    if (file.endsWith(BOOK_INDEX_FILENAME)) {
+                        return currentPath.toString();
                     }
                 }
-                currentPath.append("/");
+
                 currentPath.append(assetFiles[0]);
-                assetFiles = assetManager.list(currentPath.toString());
+                currentPath.append("/");
+                assetFiles = assetManager.list("books/"+currentPath.toString());
             }
         } catch (IOException e) {
             // show error dialog

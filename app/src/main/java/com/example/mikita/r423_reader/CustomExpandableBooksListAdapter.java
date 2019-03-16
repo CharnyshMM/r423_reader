@@ -45,6 +45,7 @@ public class CustomExpandableBooksListAdapter extends BaseExpandableListAdapter 
         TextView expandedListTextView = (TextView) convertView
                 .findViewById(R.id.books_expandableList_item_TextView);
         expandedListTextView.setText(expandedListText);
+
         return convertView;
     }
 

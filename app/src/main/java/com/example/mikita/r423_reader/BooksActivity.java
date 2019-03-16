@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.content.res.AssetManager;
 import android.os.Bundle;
 import android.widget.Button;
+import android.widget.ExpandableListAdapter;
 import android.widget.ExpandableListView;
 import android.widget.LinearLayout;
 import androidx.core.widget.NestedScrollView;
@@ -14,48 +15,79 @@ import android.view.View;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 
 public class BooksActivity extends AppCompatActivity {
 
     LinearLayout booksScrollView;
+    ExpandableListView expandableListView;
+    ExpandableListAdapter expandableListAdapter;
+    List<String> expandableListTitle;
+    HashMap<String, List<String>> expandableListDetail;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_books);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
         booksScrollView = findViewById(R.id.books_linearLayout);
+        expandableListView = (ExpandableListView) findViewById(R.id.expandableListView);
+
+        expandableListTitle = new ArrayList<String>();
+        expandableListDetail = new HashMap<String, List<String>>();
+        expandableListAdapter = new CustomExpandableBooksListAdapter(
+                getApplicationContext(),
+                expandableListTitle,
+                expandableListDetail
+        );
+        expandableListView.setAdapter(expandableListAdapter);
 
         AssetManager assetManager = getAssets();
-        String[] files = new String[0];
+        String[] booksDirs = new String[0];
         try {
-            files = assetManager.list("books");
+            booksDirs = assetManager.list("books");
+
+            for (final String bookDir:booksDirs) {
+                String[] chapterDirs = assetManager.list("books/"+bookDir);
+                ArrayList<String> chapters = new ArrayList<String>();
+                for (final String chapterDir:chapterDirs) {
+                    // maybe the cycle is not optimal.. but I have to check if there is no index.htm file
+                    // because small books may not have chapters at all
+                    if (chapterDir.endsWith("index.htm")) {
+                        chapters = new ArrayList<String>() {
+                            {
+                                add(bookDir);
+                            }
+                        };
+                        break;
+                    }
+                    chapters.add(chapterDir);
+                }
+                expandableListTitle.add(bookDir);
+                expandableListDetail.put(bookDir, chapters);
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }
 
-
-
-        for (final String file:files) {
-
-            Button button = new Button(getApplicationContext());
-            button.setText(file);
-            button.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                    intent.putExtra("directory", file);
-                    startActivity(intent);
-                    finish();
-                }
-            });
-            try {
-                booksScrollView.addView(button);
-            } catch (Exception e) {
-                e.printStackTrace();
+        expandableListView.setOnChildClickListener(new ExpandableListView.OnChildClickListener() {
+            @Override
+            public boolean onChildClick(
+                    ExpandableListView parent,
+                    View v,
+                    int groupPosition,
+                    int childPosition,
+                    long id) {
+                String book = expandableListTitle.get(groupPosition);
+                String chapter = expandableListDetail.get(book).get(childPosition);
+                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                intent.putExtra("book", book);
+                intent.putExtra("chapter", chapter);
+                startActivity(intent);
+                finish();
+                return false;
             }
-        }
+        });
     }
 
 }
