@@ -157,6 +157,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
         if (book != null) {
+
             return book+ "/";
         }
 
@@ -178,8 +179,8 @@ public class MainActivity extends AppCompatActivity {
                 }
 
                 currentPath.append(assetFiles[0]);
-                currentPath.append("/");
                 assetFiles = assetManager.list("books/"+currentPath.toString());
+                currentPath.append("/");
             }
         } catch (IOException e) {
             // show error dialog
