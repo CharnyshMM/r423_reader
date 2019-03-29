@@ -26,7 +26,6 @@ import com.google.gson.reflect.TypeToken;
 
 import java.io.IOException;
 import java.io.StringReader;
-import java.lang.reflect.Array;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
@@ -80,7 +79,17 @@ public class MainActivity extends AppCompatActivity {
                     "        }"+
             "        console.log(\"SCRIPT IS RUNNING!!!!\");\n" +
                     "resultArr = resultArr.filter(elem => elem.trim()!==\"\");"+
-            "        return addToJson(idsArr, resultArr);\n" +
+                    "let resultArr2 = [];\n" +
+                    "        let idsArr2 = [];\n" +
+                    "        resultArr.forEach((elem, index) => {\n" +
+                    "                if (elem.trim() !== \"\") {\n" +
+                    "                    resultArr2.push(elem);\n" +
+                    "                    idsArr2.push(idsArr[index]);\n" +
+                    "                }\n" +
+                    "            }\n" +
+                    "        );\n" +
+                    "\n" +
+                    "        return addToJson(idsArr2, resultArr2);"+
             "        }\n" +
             "        function addToJson(ids, texts) {\n" +
             "        if (ids===null || texts===null || ids.length!==texts.length) {\n" +
@@ -126,7 +135,7 @@ public class MainActivity extends AppCompatActivity {
                 getChaptersJson();
             }
         });
-
+        saveBookPathToSharedPreferences(bookName);
     }
 
     public void getChaptersJson() {
@@ -143,6 +152,20 @@ public class MainActivity extends AppCompatActivity {
                 CurrentBookStorage.getInstance().setChapters(chapterList);
             }
         });
+    }
+
+    public void saveBookPathToSharedPreferences(String book) {
+        SharedPreferences sharedPref = this.getPreferences(Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPref.edit();
+        editor.putString(getString(R.string.last_book_path), book);
+        editor.apply();
+    }
+
+    public String tryGetBookPathFromSharedPreferences() {
+        SharedPreferences sharedPref = this.getPreferences(Context.MODE_PRIVATE);
+
+        String book = sharedPref.getString(getString(R.string.last_book_path), null);
+        return book;
     }
 
     public String getBookPathToOpen(String book, String chapter) {
@@ -163,8 +186,12 @@ public class MainActivity extends AppCompatActivity {
         }
 
         if (book != null) {
-
             return book+ "/";
+        }
+
+        book = tryGetBookPathFromSharedPreferences();
+        if (book != null) {
+            return book;
         }
 
         AssetManager assetManager = getAssets();

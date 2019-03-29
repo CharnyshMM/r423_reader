@@ -15,6 +15,6 @@
         android:id="@+id/books"/>
 
     <item
-        android:title="Gallery"
+        android:title="@string/gallery"
         android:id="@+id/gallery"/>
 </menu>

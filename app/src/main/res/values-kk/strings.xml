@@ -9,4 +9,5 @@
     <string name="error_message_no_chapters_generated">Бұл кітап үшін мазмұн кестесін құрастыру сәтсіз аяқталды.
     </string>
     <string name="title_activity_books">Кітаптар</string>
+    <string name="gallery">Галерея</string>
 </resources>
