@@ -11,6 +11,7 @@
         let size = hArr.length;
         for (let i=0; i<size; i++) {
             if (!isNaN(+hArr[i].innerText.substr(0,1))) {
+
                 if (retText !== "") {
                     resultArr.push(retText);
                     retText = "";

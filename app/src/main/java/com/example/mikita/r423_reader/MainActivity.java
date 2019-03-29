@@ -51,29 +51,35 @@ public class MainActivity extends AppCompatActivity {
             "(function() {\n" +
             "        function getChapters() {\n" +
             "        let resultArr = [];\n" +
-            "        let idsArr = [];\n" +
-            "        let hArr = getChaptersTags();\n" +
-            "        if (hArr === null || hArr.length === 0) return ;\n" +
-            "        let retText = \"\";\n" +
-            "        let size = hArr.length;\n" +
-            "        for (let i=0; i < size; i++) {\n" +
-            "        if (!isNaN(+hArr[i].innerText.substr(0,1))) {\n" +
-            "        if (retText !== \"\") {\n" +
-            "        resultArr.push(retText);\n" +
-            "        retText = \"\";\n" +
-            "        }\n" +
-            "        let id = generateId();\n" +
-            "        hArr[i].setAttribute(\"id\", id);\n" +
-            "        idsArr.push(id);\n" +
-            "        retText += hArr[i].innerText;\n" +
-            "        } else {\n" +
-            "        retText += \" \" + hArr[i].innerText;\n" +
-            "        }\n" +
-            "        if (i === size-1) {\n" +
-            "        resultArr.push(retText);\n" +
-            "        }\n" +
-            "        }\n" +
+                    "        let idsArr = [];\n" +
+                    "\n" +
+                    "        let hArr = getChaptersTags();\n" +
+                    "        if (hArr === null || hArr === undefined ||  hArr.length === 0) return ;\n" +
+                    "\n" +
+                    "        let retText = \"\";\n" +
+                    "        let size = hArr.length;\n" +
+                    "        for (let i=0; i<size; i++) {\n" +
+                    "            if (!isNaN(+hArr[i].innerText.substr(0,1))) {\n" +
+                    "                if (retText.trim() !== \"\") {\n" +
+                    "                    resultArr.push(retText);\n" +
+                    "                    retText = \"\";\n" +
+                    "                }\n" +
+                    "                let id = generateId();\n" +
+                    "                hArr[i].setAttribute(\"id\", id);\n" +
+                    "                hArr[i].style.backgroundColor = \"red\";\n" +
+                    "                idsArr.push(id);\n" +
+                    "                retText += hArr[i].innerText;\n" +
+                    "            } else {\n" +
+                    "                if (hArr[i].innerText.trim() !== \"\") {\n" +
+                    "                    retText += \" \" + hArr[i].innerText;\n" +
+                    "                }\n" +
+                    "            }\n" +
+                    "            if (i === size-1) {\n" +
+                    "                resultArr.push(retText);\n" +
+                    "            }\n" +
+                    "        }"+
             "        console.log(\"SCRIPT IS RUNNING!!!!\");\n" +
+                    "resultArr = resultArr.filter(elem => elem.trim()!==\"\");"+
             "        return addToJson(idsArr, resultArr);\n" +
             "        }\n" +
             "        function addToJson(ids, texts) {\n" +
@@ -229,6 +235,11 @@ public class MainActivity extends AppCompatActivity {
                 finish();
                 return true;
             }
+            case R.id.gallery:
+                Intent i = new Intent(getApplicationContext(), GalleryActivity.class);
+                startActivity(i);
+                finish();
+                return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
