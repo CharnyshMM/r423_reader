@@ -79,8 +79,7 @@ public class GalleryDetailSectionsPagerAdapter extends FragmentPagerAdapter {
             return fragment;
         }
 
-        public PlaceholderFragment() {
-        }
+        public PlaceholderFragment() { }
 
         @Override
         public void onStart() {
