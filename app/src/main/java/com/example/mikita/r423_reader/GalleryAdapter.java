@@ -23,6 +23,7 @@ public class GalleryAdapter extends RecyclerView.Adapter<GalleryAdapter.MyViewHo
         this.recyclerItems=feedItems;
         this.onItemClickListener = listener;
         this.context = context;
+        this.onItemClickListener = listener;
     }
 
     @NonNull
@@ -41,6 +42,7 @@ public class GalleryAdapter extends RecyclerView.Adapter<GalleryAdapter.MyViewHo
             InputStream stream = context.getAssets().open(item.getImageUrl());
             Drawable d = Drawable.createFromStream(stream, null);
             holder.imageView.setImageDrawable(d);
+            holder.setOnClickListener(onItemClickListener, position);
         } catch (IOException e) {
             e.printStackTrace();
             holder.imageView.setImageResource(R.drawable.not_found);
@@ -53,7 +55,7 @@ public class GalleryAdapter extends RecyclerView.Adapter<GalleryAdapter.MyViewHo
     }
 
     public interface OnItemClickListener{
-        void onItemClick(GalleryImage item);
+        void onItemClick(int position);
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
@@ -63,14 +65,13 @@ public class GalleryAdapter extends RecyclerView.Adapter<GalleryAdapter.MyViewHo
         public MyViewHolder(View itemView) {
             super(itemView);
             imageView = (ImageView) itemView.findViewById(R.id.gallery__images__item);
-
         }
 
-        public void setOnClickListener(final OnItemClickListener listener, final GalleryImage item) {
+        public void setOnClickListener(final OnItemClickListener listener, final int position) {
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    listener.onItemClick(item);
+                    listener.onItemClick(position);
                 }
             });
         }

@@ -9,4 +9,5 @@
     <string name="error_message_no_chapters_generated">Не атрымалася сабраць змест для гэтай кнігі</string>
     <string name="title_activity_books">Кнігі</string>
     <string name="gallery">Галерэя</string>
+    <string name="error_image_not_loaded">Памылка! Не атрымалася загрузіць выяву</string>
 </resources>

@@ -9,4 +9,5 @@
     <string name="error_message_no_chapters_generated">Не удалось собрать оглавление для этой книги</string>
     <string name="title_activity_books">Книги</string>
     <string name="gallery">Галерея</string>
+    <string name="error_image_not_loaded">Ошибка! Не удалось загрузить это фото</string>
 </resources>

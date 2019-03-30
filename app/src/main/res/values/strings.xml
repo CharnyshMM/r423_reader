@@ -12,6 +12,7 @@
     <string name="section_format">Hello World from section: %1$d</string>
     <string name="gallery">Gallery</string>
     <string name="last_book_path" translatable="false">null</string>
+    <string name="error_image_not_loaded">Error! Image failed to load</string>
 
 
 </resources>

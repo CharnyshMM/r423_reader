@@ -1,13 +1,12 @@
 package com.example.mikita.r423_reader;
 
-import android.graphics.drawable.Drawable;
+import android.content.Intent;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.io.IOException;
-import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -28,7 +27,7 @@ public class GalleryActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_gallery);
-        List<GalleryImage> data = new ArrayList<GalleryImage>();
+        final ArrayList<GalleryImage> data = new ArrayList<GalleryImage>();
         setTitle(R.string.gallery);
         try {
             String[] images = getAssets().list("gallery");
@@ -45,8 +44,11 @@ public class GalleryActivity extends AppCompatActivity {
 
         GalleryAdapter.OnItemClickListener onItemClickListener = new GalleryAdapter.OnItemClickListener() {
             @Override
-            public void onItemClick(GalleryImage item) {
-
+            public void onItemClick(int  position) {
+                Intent intent = new Intent(getApplicationContext(), GalleryDetailActivity.class);
+                intent.putParcelableArrayListExtra("data", data);
+                intent.putExtra("position", position);
+                startActivity(intent);
             }
         };
         mAdapter = new GalleryAdapter(GalleryActivity.this, data, onItemClickListener);
