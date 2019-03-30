@@ -33,12 +33,7 @@ public class GalleryActivity extends AppCompatActivity {
         try {
             String[] images = getAssets().list("gallery");
             for (String image:images) {
-                GalleryImage im = new GalleryImage();
-                im.TextDescription = "OOO";
-                InputStream stream = getAssets().open("gallery/" +image);
-                im.setDrawableImage(Drawable.createFromStream(stream, null));
-                data.add(im);
-                stream.close();
+                data.add(new GalleryImage("gallery/"+image, image));
             }
         } catch (IOException e) {
             e.printStackTrace();

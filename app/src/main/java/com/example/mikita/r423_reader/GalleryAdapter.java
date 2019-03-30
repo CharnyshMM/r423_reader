@@ -1,16 +1,16 @@
 package com.example.mikita.r423_reader;
 
 import android.content.Context;
+import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-import com.bumptech.glide.Glide;
 
-import java.net.URI;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.List;
 
 public class GalleryAdapter extends RecyclerView.Adapter<GalleryAdapter.MyViewHolder> {
@@ -37,16 +37,14 @@ public class GalleryAdapter extends RecyclerView.Adapter<GalleryAdapter.MyViewHo
     @Override
     public void onBindViewHolder(@NonNull GalleryAdapter.MyViewHolder holder, int position) {
         GalleryImage item = recyclerItems.get(position);
-
-        holder.imageView.setImageDrawable(item.getDrawableImage());
-//        Glide
-//                .with(context)
-//                .load(item.getImageUrl())
-//                .thumbnail(0.5f)
-//                .crossFade()
-//                .into(holder.imageView);
-        //holder.setOnClickListener(onItemClickListener, item);
-
+        try {
+            InputStream stream = context.getAssets().open(item.getImageUrl());
+            Drawable d = Drawable.createFromStream(stream, null);
+            holder.imageView.setImageDrawable(d);
+        } catch (IOException e) {
+            e.printStackTrace();
+            holder.imageView.setImageResource(R.drawable.not_found);
+        }
     }
 
     @Override
