@@ -14,5 +14,9 @@
     <string name="last_book_path" translatable="false">null</string>
     <string name="error_image_not_loaded">Error! Image failed to load</string>
 
+    <string name="title_activity_fullscreen_gallery_detail">FullscreenGalleryDetailActivity</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
+
 
 </resources>

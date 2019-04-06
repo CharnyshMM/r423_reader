@@ -45,7 +45,7 @@ public class GalleryActivity extends AppCompatActivity {
         GalleryAdapter.OnItemClickListener onItemClickListener = new GalleryAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(int  position) {
-                Intent intent = new Intent(getApplicationContext(), GalleryDetailActivity.class);
+                Intent intent = new Intent(getApplicationContext(), FullscreenGalleryDetailActivity.class);
                 intent.putParcelableArrayListExtra("data", data);
                 intent.putExtra("position", position);
                 startActivity(intent);
