@@ -53,7 +53,7 @@ public class GalleryDetailActivity extends AppCompatActivity {
 
         // Create the adapter that will return a fragment for each of the three
         // primary sections of the activity.
-        mSectionsPagerAdapter = new GalleryDetailSectionsPagerAdapter(getSupportFragmentManager(), imageArrayList);
+        mSectionsPagerAdapter = new GalleryDetailSectionsPagerAdapter(getSupportFragmentManager(), imageArrayList, null);
 
         // Set up the ViewPager with the sections adapter.
         mViewPager = (ViewPager) findViewById(R.id.container);
