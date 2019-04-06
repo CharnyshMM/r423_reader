@@ -1,14 +1,15 @@
 package com.example.mikita.r423_reader;
 
 import android.content.Intent;
+import android.content.res.AssetManager;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.List;
 
 public class GalleryActivity extends AppCompatActivity {
 
@@ -27,26 +28,65 @@ public class GalleryActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_gallery);
-        final ArrayList<GalleryImage> data = new ArrayList<GalleryImage>();
+
         setTitle(R.string.gallery);
-        try {
-            String[] images = getAssets().list("gallery");
-            for (String image:images) {
-                data.add(new GalleryImage("gallery/"+image, image));
+
+        final ArrayList<GalleryListItem> data = new ArrayList<>();
+        try{
+            String[] paths = getAssets().list("gallery");
+            for (String path: paths){
+                boolean hasExtension = path.contains(".");
+                if (!hasExtension){
+
+                    String[] images = getAssets().list("gallery/" + path);
+                    if (images.length != 0){
+                        data.add(new GalleryHeaderItem(path));
+                        for (String img: images){
+                            data.add(new GalleryImageItem(new GalleryImage("gallery/" + path + "/" + img, img)));
+                        }
+                    }
+                } else {
+                    data.add(new GalleryImageItem(new GalleryImage("gallery/" + path, path)));
+                }
             }
-        } catch (IOException e) {
+
+        } catch (IOException e){
             e.printStackTrace();
         }
 
         mRecyclerView = (RecyclerView) findViewById(R.id.gallery__images_recyclerView);
-        mRecyclerView.setLayoutManager(new GridLayoutManager(getApplicationContext(), 3));
+        GridLayoutManager layoutManager = new GridLayoutManager(getApplicationContext(), 3);
+        layoutManager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
+            @Override
+            public int getSpanSize(int position) {
+                switch (data.get(position).getType()){
+                    case GalleryListItem.TYPE_HEADER: {
+                        return 3;
+                    }
+                    case GalleryListItem.TYPE_IMAGE: {
+                        return 1;
+                    }
+                    default:
+                        throw new IllegalStateException("unsupported item type");
+                }
+            }
+        });
+
+        mRecyclerView.setLayoutManager(layoutManager);
         mRecyclerView.setHasFixedSize(true); // Helps improve performance
 
         GalleryAdapter.OnItemClickListener onItemClickListener = new GalleryAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(int  position) {
                 Intent intent = new Intent(getApplicationContext(), GalleryDetailActivity.class);
-                intent.putParcelableArrayListExtra("data", data);
+                ArrayList<GalleryImage> images = new ArrayList<>();
+                for (GalleryListItem item: data){
+                    if (item instanceof GalleryImageItem){
+                        images.add(((GalleryImageItem) item).getImage());
+                    }
+                }
+
+                intent.putParcelableArrayListExtra("data", images);
                 intent.putExtra("position", position);
                 startActivity(intent);
             }
