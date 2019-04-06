@@ -24,9 +24,9 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
 
-import java.io.IOException;
-import java.io.StringReader;
+import java.io.*;
 import java.lang.reflect.Type;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -41,74 +41,7 @@ public class MainActivity extends AppCompatActivity {
     private static final String BOOKS_ASSET_PATH = "file:///android_asset/books";
     private static final String BOOK_INDEX_FILENAME = "index.htm";
 
-    private static final String JsScripts =
-            "function scrollToElement(id) {\n" +
-            "        var elem = document.getElementById(id);\n" +
-            "        console.log(elem);\n" +
-            "        elem.scrollIntoView(true);\n" +
-            "    }" +
-            "(function() {\n" +
-            "        function getChapters() {\n" +
-            "        let resultArr = [];\n" +
-                    "        let idsArr = [];\n" +
-                    "\n" +
-                    "        let hArr = getChaptersTags();\n" +
-                    "        if (hArr === null || hArr === undefined ||  hArr.length === 0) return ;\n" +
-                    "\n" +
-                    "        let retText = \"\";\n" +
-                    "        let size = hArr.length;\n" +
-                    "        for (let i=0; i<size; i++) {\n" +
-                    "            if (!isNaN(+hArr[i].innerText.substr(0,1))) {\n" +
-                    "                if (retText.trim() !== \"\") {\n" +
-                    "                    resultArr.push(retText);\n" +
-                    "                    retText = \"\";\n" +
-                    "                }\n" +
-                    "                let id = generateId();\n" +
-                    "                hArr[i].setAttribute(\"id\", id);\n" +
-                    "                hArr[i].style.backgroundColor = \"red\";\n" +
-                    "                idsArr.push(id);\n" +
-                    "                retText += hArr[i].innerText;\n" +
-                    "            } else {\n" +
-                    "                if (hArr[i].innerText.trim() !== \"\") {\n" +
-                    "                    retText += \" \" + hArr[i].innerText;\n" +
-                    "                }\n" +
-                    "            }\n" +
-                    "            if (i === size-1) {\n" +
-                    "                resultArr.push(retText);\n" +
-                    "            }\n" +
-                    "        }"+
-            "        console.log(\"SCRIPT IS RUNNING!!!!\");\n" +
-                    "resultArr = resultArr.filter(elem => elem.trim()!==\"\");"+
-                    "let resultArr2 = [];\n" +
-                    "        let idsArr2 = [];\n" +
-                    "        resultArr.forEach((elem, index) => {\n" +
-                    "                if (elem.trim() !== \"\") {\n" +
-                    "                    resultArr2.push(elem);\n" +
-                    "                    idsArr2.push(idsArr[index]);\n" +
-                    "                }\n" +
-                    "            }\n" +
-                    "        );\n" +
-                    "\n" +
-                    "        return addToJson(idsArr2, resultArr2);"+
-            "        }\n" +
-            "        function addToJson(ids, texts) {\n" +
-            "        if (ids===null || texts===null || ids.length!==texts.length) {\n" +
-            "        throw new DOMException(\"ids size != texts size\");\n" +
-            "        }\n" +
-            "        let objects = [];\n" +
-            "        for (let i=0; i < ids.length; i++) {\n" +
-            "        objects.push({id: ids[i], text: texts[i]});\n" +
-            "        }\n" +
-            "            return objects;\n" +
-            "        }\n" +
-            "        function getChaptersTags() {\n" +
-            "            return Array.prototype.slice.call(document.querySelectorAll(\"h1, h2, h3, .MsoTitle\"));\n" +
-            "        }\n" +
-            "        function generateId () {\n" +
-            "            return \"_\" + Math.random().toString(36).substr(2, 9);\n" +
-            "        }\n" +
-            "        return getChapters();\n" +
-            "        }());";
+    private String mJsScripts;
 
     WebView webView;
 
@@ -127,6 +60,7 @@ public class MainActivity extends AppCompatActivity {
         String bookName = getBookPathToOpen(book, chapter);
         setTitle(bookName);
 
+        mJsScripts = loadJavaScript("scripts.js");
 
         webView.loadUrl(BOOKS_ASSET_PATH + "/" + bookName + BOOK_INDEX_FILENAME);
         webView.setWebViewClient(new WebViewClient() {
@@ -141,17 +75,18 @@ public class MainActivity extends AppCompatActivity {
     public void getChaptersJson() {
         // this code is to run JavaScript code from the string above and get its result
         Log.d(TAG, "getChaptersJson:  ");
-        webView.evaluateJavascript("javascript:" + this.JsScripts
+        webView.evaluateJavascript("javascript:" + mJsScripts
                 , new ValueCallback<String>() {
-            @TargetApi(Build.VERSION_CODES.HONEYCOMB)
-            @Override
-            public void onReceiveValue(String s) {
-                Gson gson = new Gson();
-                Type listType = new TypeToken<ArrayList<Chapter>>(){}.getType();
-                List<Chapter> chapterList = gson.fromJson(s, listType);
-                CurrentBookStorage.getInstance().setChapters(chapterList);
-            }
-        });
+                    @TargetApi(Build.VERSION_CODES.HONEYCOMB)
+                    @Override
+                    public void onReceiveValue(String s) {
+                        Gson gson = new Gson();
+                        Type listType = new TypeToken<ArrayList<Chapter>>() {
+                        }.getType();
+                        List<Chapter> chapterList = gson.fromJson(s, listType);
+                        CurrentBookStorage.getInstance().setChapters(chapterList);
+                    }
+                });
     }
 
     public void saveBookPathToSharedPreferences(String book) {
@@ -173,20 +108,20 @@ public class MainActivity extends AppCompatActivity {
         // for the first book drilling down till index file found.
 
         /*
-        * ASSETS FOLDER STRUCTURE:
-        *   android_asset/
-        *                  book_name/
-        *                           chapter_1_name/
-        *                                          index.htm
-        *                                         / *
-        * */
+         * ASSETS FOLDER STRUCTURE:
+         *   android_asset/
+         *                  book_name/
+         *                           chapter_1_name/
+         *                                          index.htm
+         *                                         / *
+         * */
 
         if (book != null && chapter != null) {
             return book + "/" + chapter + "/";
         }
 
         if (book != null) {
-            return book+ "/";
+            return book + "/";
         }
 
         book = tryGetBookPathFromSharedPreferences();
@@ -205,14 +140,14 @@ public class MainActivity extends AppCompatActivity {
             while (!indexFound) {
                 // sorry, I didn't found a better way to check if the entry is file or directory
                 // so if I didn't found index.htm, than I open first found file as a directory
-                for (String file: assetFiles) {
+                for (String file : assetFiles) {
                     if (file.endsWith(BOOK_INDEX_FILENAME)) {
                         return currentPath.toString();
                     }
                 }
 
                 currentPath.append(assetFiles[0]);
-                assetFiles = assetManager.list("books/"+currentPath.toString());
+                assetFiles = assetManager.list("books/" + currentPath.toString());
                 currentPath.append("/");
             }
         } catch (IOException e) {
@@ -247,7 +182,7 @@ public class MainActivity extends AppCompatActivity {
                 }
                 return true;
             }
-            case R.id.decrease_text:{
+            case R.id.decrease_text: {
                 int textZoom = webView.getSettings().getTextZoom();
                 if (textZoom <= MINIMUM_TEXT_ZOOM) {
                     Toast.makeText(getApplicationContext(), "Minimum achieved", Toast.LENGTH_SHORT).show();
@@ -279,8 +214,8 @@ public class MainActivity extends AppCompatActivity {
             if (resultCode == RESULT_OK) {
                 String headerId = data.getExtras().getString("HeaderID", null);
                 if (headerId != null) {
-                    Log.d(TAG, "onActivityResult: headerId != null "+headerId);
-                    webView.evaluateJavascript("javascript:scrollToElement('"+headerId+"')", new ValueCallback<String>() {
+                    Log.d(TAG, "onActivityResult: headerId != null " + headerId);
+                    webView.evaluateJavascript("javascript:scrollToElement('" + headerId + "')", new ValueCallback<String>() {
                         @TargetApi(Build.VERSION_CODES.HONEYCOMB)
                         @Override
                         public void onReceiveValue(String s) {
@@ -291,10 +226,10 @@ public class MainActivity extends AppCompatActivity {
                             reader.setLenient(true);
 
                             try {
-                                if(reader.peek() != JsonToken.NULL) {
-                                    if(reader.peek() == JsonToken.STRING) {
+                                if (reader.peek() != JsonToken.NULL) {
+                                    if (reader.peek() == JsonToken.STRING) {
                                         String msg = reader.nextString();
-                                        if(msg != null) {
+                                        if (msg != null) {
                                             Toast.makeText(getApplicationContext(), msg, Toast.LENGTH_LONG).show();
                                         }
                                     }
@@ -313,5 +248,26 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         }
+    }
+
+    private String loadJavaScript(String fileName) {
+        StringBuilder builder = new StringBuilder();
+        InputStream stream;
+
+        try {
+            stream = getAssets().open(fileName);
+            BufferedReader reader = new BufferedReader(new InputStreamReader(stream, StandardCharsets.UTF_8));
+
+            String tempsString;
+            while ((tempsString = reader.readLine()) != null) {
+                builder.append(tempsString);
+            }
+            reader.close();
+        } catch (IOException e) {
+            // TODO: print valid error description
+            e.printStackTrace();
+        } 
+
+        return builder.toString();
     }
 }
