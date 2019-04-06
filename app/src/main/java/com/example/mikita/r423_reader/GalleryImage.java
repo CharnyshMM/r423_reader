@@ -33,7 +33,7 @@ public class GalleryImage implements Parcelable {
         this.textDescription = textDescription;
     }
 
-    private GalleryImage(Parcel source) {
+    public GalleryImage(Parcel source) {
         imageUrl = source.readString();
         textDescription = source.readString();
     }
