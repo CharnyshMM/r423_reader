@@ -1,7 +1,10 @@
 package com.example.mikita.r423_reader;
 
 import android.annotation.SuppressLint;
+import android.app.Dialog;
 import android.os.Parcelable;
+import android.widget.Button;
+import android.widget.TextView;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
@@ -54,6 +57,7 @@ public class FullscreenGalleryDetailActivity extends AppCompatActivity {
         }
     };
     private View mControlsView;
+    private Button mInfoButton;
     private final Runnable mShowPart2Runnable = new Runnable() {
         @Override
         public void run() {
@@ -87,6 +91,7 @@ public class FullscreenGalleryDetailActivity extends AppCompatActivity {
         }
     };
     private ArrayList<GalleryImage> imageArrayList;
+    private int currentPosition;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -96,17 +101,25 @@ public class FullscreenGalleryDetailActivity extends AppCompatActivity {
 
         mVisible = true;
         mControlsView = findViewById(R.id.fullscreen_content_controls);
-        mViewPager = findViewById(R.id.container);
+        mViewPager = findViewById(R.id.fullscreen_gallery_detail__container_viewPager);
+        mInfoButton = findViewById(R.id.fullscreen_gallery_detail__info_button);
 
+        mInfoButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int i = mViewPager.getCurrentItem();
+                showInfoDialog(imageArrayList.get(i));
+            }
+        });
 
         // Upon interacting with UI controls, delay any scheduled hide()
         // operations to prevent the jarring behavior of controls going away
         // while interacting with the UI.
-        findViewById(R.id.dummy_button).setOnTouchListener(mDelayHideTouchListener);
+
 
         imageArrayList = getIntent().getParcelableArrayListExtra("data");
-        int currentPosition = getIntent().getIntExtra("position", 0);
-
+        currentPosition = getIntent().getIntExtra("position", 0);
+        setTitle(imageArrayList.get(currentPosition).getImageUrl());
         // Create the adapter that will return a fragment for each of the three
         // primary sections of the activity.
         GalleryDetailSectionsPagerAdapter mSectionsPagerAdapter = new GalleryDetailSectionsPagerAdapter(
@@ -132,7 +145,7 @@ public class FullscreenGalleryDetailActivity extends AppCompatActivity {
 
             @Override
             public void onPageSelected(int position) {
-
+                setTitle(imageArrayList.get(position).getImageUrl());
             }
 
             @Override
@@ -140,6 +153,8 @@ public class FullscreenGalleryDetailActivity extends AppCompatActivity {
 
             }
         });
+
+
     }
 
     @Override
@@ -184,6 +199,31 @@ public class FullscreenGalleryDetailActivity extends AppCompatActivity {
         // Schedule a runnable to display UI elements after a delay
         mHideHandler.removeCallbacks(mHidePart2Runnable);
         mHideHandler.postDelayed(mShowPart2Runnable, UI_ANIMATION_DELAY);
+    }
+
+    private void showInfoDialog(GalleryImage currentImage) {
+        final Dialog dialog = new Dialog(this);
+        dialog.setContentView(R.layout.dialog__gallery_detail_info);
+        dialog.setTitle("Title...");
+
+        // set the custom dialog components - text, image and button
+        TextView nameTextView = dialog.findViewById(R.id.gallery_detail_info__name_textView);
+        nameTextView.setText(currentImage.getImageUrl());
+
+        Button understoodButton = dialog.findViewById(R.id.gallery_detail_info__understood_button);
+        understoodButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+        TextView descriptionTextView = dialog.findViewById(
+                R.id.gallery_detail_info__description_textView
+        );
+        descriptionTextView.setText(R.string.long_text_example);
+        dialog.setCancelable(false);
+
+        dialog.show();
     }
 
     /**

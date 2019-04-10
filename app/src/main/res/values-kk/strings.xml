@@ -10,4 +10,6 @@
     </string>
     <string name="title_activity_books">Кітаптар</string>
     <string name="gallery">Галерея</string>
+    <string name="fullscreen_gallery_detail__info_button">Сипаттамасы</string>
+    <string name="understood">Оны алды!</string>
 </resources>

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto" android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:gravity="center"
+              style="@style/Animation.AppCompat.Tooltip"
+              >
+    <TextView
+            android:id="@+id/gallery_detail_info__name_textView"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:textStyle="bold"
+            android:text="Vnutri/stoika"
+            android:layout_alignParentTop="true"
+            android:padding="@dimen/text_margin"
+            style="@android:style/TextAppearance.DeviceDefault.Large"
+    />
+    <Button
+            android:id="@+id/gallery_detail_info__understood_button"
+            android:layout_alignParentBottom="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            style="@android:style/Widget.Material.Button.Borderless.Colored"
+            android:text="@string/understood"
+    />
+    <ScrollView
+            android:id="@+id/gallery_detail_info__description_scrollView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/gallery_detail_info__name_textView"
+            android:layout_above="@id/gallery_detail_info__understood_button"
+            android:padding="@dimen/text_margin"
+    >
+                <TextView
+                android:id="@+id/gallery_detail_info__description_textView"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                style="@android:style/TextAppearance.DeviceDefault.Medium"
+                android:text="@string/long_text_example"
+        />
+
+    </ScrollView>
+
+</RelativeLayout>
