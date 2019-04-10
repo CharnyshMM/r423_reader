@@ -10,4 +10,6 @@
     <string name="title_activity_books">Кнігі</string>
     <string name="gallery">Галерэя</string>
     <string name="error_image_not_loaded">Памылка! Не атрымалася загрузіць выяву</string>
+    <string name="fullscreen_gallery_detail__info_button">Апісанне</string>
+    <string name="understood">Зразумеў</string>
 </resources>

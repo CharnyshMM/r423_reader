@@ -10,4 +10,6 @@
     <string name="title_activity_books">Книги</string>
     <string name="gallery">Галерея</string>
     <string name="error_image_not_loaded">Ошибка! Не удалось загрузить это фото</string>
+    <string name="fullscreen_gallery_detail__info_button">Описание</string>
+    <string name="understood">Понял!</string>
 </resources>
