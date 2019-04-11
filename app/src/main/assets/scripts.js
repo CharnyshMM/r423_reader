@@ -20,7 +20,7 @@ function scrollToElement(id) {
                 }
                 let id = generateId();
                 hArr[i].setAttribute("id", id);
-                hArr[i].style.backgroundColor = "red";
+//                hArr[i].style.backgroundColor = "red";
                 idsArr.push(id);
                 retText += hArr[i].innerText;
             } else {

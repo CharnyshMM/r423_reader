@@ -52,6 +52,9 @@ public class MainActivity extends AppCompatActivity {
         webView = findViewById(R.id.main__webView);
         WebSettings webSettings = webView.getSettings();
         webSettings.setJavaScriptEnabled(true);
+        webSettings.setBuiltInZoomControls(true);
+        webSettings.setDisplayZoomControls(false);
+
         Intent i = getIntent();
         String book = i.getStringExtra("book");
         String chapter = i.getStringExtra("chapter");
@@ -100,6 +103,7 @@ public class MainActivity extends AppCompatActivity {
         SharedPreferences sharedPref = this.getPreferences(Context.MODE_PRIVATE);
 
         String book = sharedPref.getString(getString(R.string.last_book_path), null);
+        //String wideViewMode = sharedPref.getBoolean(R.string.last_wideView_mode, false);
         return book;
     }
 
@@ -172,6 +176,11 @@ public class MainActivity extends AppCompatActivity {
             case R.id.contents:
                 Intent intent = new Intent(getApplicationContext(), ContentsActivity.class);
                 startActivityForResult(intent, CONTENTS_ACTIVITY_RESULT);
+                return true;
+
+            case R.id.wide_view_checkable:
+                item.setChecked(!item.isChecked());
+                webView.getSettings().setUseWideViewPort(item.isChecked());
                 return true;
             case R.id.increase_text: {
                 int textZoom = webView.getSettings().getTextZoom();

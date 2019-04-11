@@ -14,4 +14,5 @@
     <string name="understood">Зразумеў</string>
     <string name="error__descriptions_not_loaded">"Апісанні не загружаныя. Пачакайце, калі ласка!\n "</string>
     <string name="error__no_description_for_image">Памылка! Няма апісання для гэтага фатаздымка</string>
+    <string name="wide_view_toggle">Шырокі агляд</string>
 </resources>
