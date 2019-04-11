@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Р-423</string>
-    <string name="increase_text_string" translatable="false">Увеличить текст</string>
+    <string name="increase_text_string">Увеличить текст</string>
     <string name="contents_string">Содержание</string>
     <string name="decrease_text_string">Уменьшить текст</string>
     <string name="books_string">Книги</string>
@@ -12,4 +12,6 @@
     <string name="error_image_not_loaded">Ошибка! Не удалось загрузить это фото</string>
     <string name="fullscreen_gallery_detail__info_button">Описание</string>
     <string name="understood">Понял!</string>
+    <string name="error__descriptions_not_loaded">"Описания не загружены. Подождите пожалуйста!\n "</string>
+    <string name="error__no_description_for_image">Ошибка! Нет описания для этой фотографии</string>
 </resources>

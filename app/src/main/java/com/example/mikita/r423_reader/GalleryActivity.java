@@ -37,17 +37,18 @@ public class GalleryActivity extends AppCompatActivity {
             for (String path: paths){
                 boolean hasExtension = path.contains(".");
                 if (!hasExtension){
-
                     String[] images = getAssets().list("gallery/" + path);
                     if (images.length != 0){
                         data.add(new GalleryHeaderItem(path));
                         for (String img: images){
-                            data.add(new GalleryImageItem(new GalleryImage("gallery/" + path + "/" + img, img)));
+                            String name = path + "/" + img;
+                            data.add(new GalleryImageItem(new GalleryImage("gallery/" + name, name.replaceFirst("[.][^.]+$", ""))));
                         }
                     }
-                } else {
-                    data.add(new GalleryImageItem(new GalleryImage("gallery/" + path, path)));
                 }
+//                else {
+//                    data.add(new GalleryImageItem(new GalleryImage("gallery/" + path, path, path)));
+//                }
             }
 
         } catch (IOException e){
@@ -80,16 +81,22 @@ public class GalleryActivity extends AppCompatActivity {
             public void onItemClick(int  position) {
                 Intent intent = new Intent(getApplicationContext(), FullscreenGalleryDetailActivity.class);
                 ArrayList<GalleryImage> images = new ArrayList<>();
+                int dataPositionCounter = -1;
+                int imagesOnlyPositionCounter = -1;
                 for (GalleryListItem item: data){
                     if (item instanceof GalleryImageItem){
+                        if (dataPositionCounter < position) {
+                            imagesOnlyPositionCounter++;
+                        }
                         images.add(((GalleryImageItem) item).getImage());
                     }
+                    dataPositionCounter++;
                 }
 
                 intent.putParcelableArrayListExtra("data", images);
                 // Intent intent = new Intent(getApplicationContext(), FullscreenGalleryDetailActivity.class);
                 // intent.putParcelableArrayListExtra("data", data);
-                intent.putExtra("position", position);
+                intent.putExtra("position", imagesOnlyPositionCounter);
                 startActivity(intent);
             }
         };

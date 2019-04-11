@@ -12,4 +12,5 @@
     <string name="gallery">Галерея</string>
     <string name="fullscreen_gallery_detail__info_button">Сипаттамасы</string>
     <string name="understood">Оны алды!</string>
+    <string name="error__descriptions_not_loaded">Суреттер жүктелмеген. Осы немесе басқа суретте күте тұрыңыз.</string>
 </resources>
