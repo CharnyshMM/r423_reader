@@ -81,4 +81,5 @@ lint/tmp/
 
 # assets
 
-assets/
+assets/books/
+assets/gallery/
