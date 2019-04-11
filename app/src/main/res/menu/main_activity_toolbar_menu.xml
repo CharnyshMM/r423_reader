@@ -4,6 +4,10 @@
             android:title="@string/contents_string"
             android:id="@+id/contents"/>
     <item
+        android:title="@string/wide_view_toggle"
+        android:checkable="true"
+        android:id="@+id/wide_view_checkable"/>
+    <item
         android:title="@string/increase_text_string"
         android:id="@+id/increase_text"/>
     <item

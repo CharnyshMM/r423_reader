@@ -103,4 +103,11 @@ public class GalleryActivity extends AppCompatActivity {
         mAdapter = new GalleryAdapter(GalleryActivity.this, data, onItemClickListener);
         mRecyclerView.setAdapter(mAdapter);
     }
+
+    @Override
+    public void onBackPressed() {
+        Intent i = new Intent(this, MainActivity.class);
+        startActivity(i);
+        finish();
+    }
 }
