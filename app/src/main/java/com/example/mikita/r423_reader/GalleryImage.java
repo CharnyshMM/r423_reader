@@ -5,7 +5,17 @@ import android.os.Parcelable;
 
 public class GalleryImage implements Parcelable {
     protected String imageUrl;
-    protected String textDescription;
+    protected String imageName;
+
+    public String getImageName() {
+        return imageName;
+    }
+
+    public void setImageName(String imageName) {
+        this.imageName = imageName;
+    }
+
+
 
     public String getImageUrl() {
         return imageUrl;
@@ -15,27 +25,20 @@ public class GalleryImage implements Parcelable {
         this.imageUrl = imageUrl;
     }
 
-    public String getTextDescription() {
-        return textDescription;
-    }
-
-    public void setTextDescription(String textDescription) {
-        this.textDescription = textDescription;
-    }
 
     public GalleryImage() {
         this.imageUrl = null;
-        this.textDescription = null;
+        this.imageName = null;
     }
 
-    public  GalleryImage(String imageUrl, String textDescription) {
+    public  GalleryImage(String imageUrl, String imageName) {
         this.imageUrl = imageUrl;
-        this.textDescription = textDescription;
+        this.imageName = imageName;
     }
 
     public GalleryImage(Parcel source) {
         imageUrl = source.readString();
-        textDescription = source.readString();
+        imageName = source.readString();
     }
 
     @Override
@@ -46,7 +49,7 @@ public class GalleryImage implements Parcelable {
     @Override
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(imageUrl);
-        dest.writeString(textDescription);
+        dest.writeString(imageName);
     }
 
     public static final Parcelable.Creator<GalleryImage> CREATOR = new Parcelable.Creator<GalleryImage>() {

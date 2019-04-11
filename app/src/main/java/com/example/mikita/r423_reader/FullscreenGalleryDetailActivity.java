@@ -2,9 +2,12 @@ package com.example.mikita.r423_reader;
 
 import android.annotation.SuppressLint;
 import android.app.Dialog;
-import android.os.Parcelable;
+import android.content.Context;
+import android.os.AsyncTask;
+import android.util.JsonReader;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
@@ -12,8 +15,16 @@ import android.os.Handler;
 import android.view.MotionEvent;
 import android.view.View;
 import androidx.viewpager.widget.ViewPager;
+import org.json.JSONException;
+import org.json.JSONObject;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.lang.ref.WeakReference;
 import java.util.ArrayList;
+import java.util.Dictionary;
+import java.util.HashMap;
+import java.util.Iterator;
 
 /**
  * An example full-screen activity that shows and hides the system UI (i.e.
@@ -92,6 +103,7 @@ public class FullscreenGalleryDetailActivity extends AppCompatActivity {
     };
     private ArrayList<GalleryImage> imageArrayList;
     private int currentPosition;
+    private HashMap<String, String> imagesDescriptionsHashMap;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -108,7 +120,18 @@ public class FullscreenGalleryDetailActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 int i = mViewPager.getCurrentItem();
-                showInfoDialog(imageArrayList.get(i));
+                GalleryImage image = imageArrayList.get(i);
+                if (imagesDescriptionsHashMap == null) {
+                    Toast.makeText(getApplicationContext(), R.string.error__descriptions_not_loaded, Toast.LENGTH_LONG).show();
+                    return;
+                }
+                String description = imagesDescriptionsHashMap.get(image.imageName.toLowerCase());
+                // TODO: make it implicit to use lowercase keys here
+                if (description == null) {
+                    Toast.makeText(getApplicationContext(), R.string.error__no_description_for_image, Toast.LENGTH_LONG).show();
+                    return;
+                }
+                showInfoDialog(image.getImageName(), description);
             }
         });
 
@@ -119,7 +142,7 @@ public class FullscreenGalleryDetailActivity extends AppCompatActivity {
 
         imageArrayList = getIntent().getParcelableArrayListExtra("data");
         currentPosition = getIntent().getIntExtra("position", 0);
-        setTitle(imageArrayList.get(currentPosition).getImageUrl());
+        setTitle(imageArrayList.get(currentPosition).getImageName());
         // Create the adapter that will return a fragment for each of the three
         // primary sections of the activity.
         GalleryDetailSectionsPagerAdapter mSectionsPagerAdapter = new GalleryDetailSectionsPagerAdapter(
@@ -145,7 +168,7 @@ public class FullscreenGalleryDetailActivity extends AppCompatActivity {
 
             @Override
             public void onPageSelected(int position) {
-                setTitle(imageArrayList.get(position).getImageUrl());
+                setTitle(imageArrayList.get(position).getImageName());
             }
 
             @Override
@@ -153,8 +176,15 @@ public class FullscreenGalleryDetailActivity extends AppCompatActivity {
 
             }
         });
-
-
+        mViewPager.setCurrentItem(currentPosition);
+        DetailsLoaderAsyncTask descriptionsLoaderTask = new DetailsLoaderAsyncTask(getApplicationContext());
+        descriptionsLoaderTask.setOnDescriptionsLoadedListener(new DetailsLoaderAsyncTask.OnDescriptionsLoadedListener() {
+            @Override
+            public void onDescriptionsLoaded(HashMap<String, String> descriptions) {
+                imagesDescriptionsHashMap = descriptions;
+            }
+        });
+        descriptionsLoaderTask.execute();
     }
 
     @Override
@@ -201,14 +231,14 @@ public class FullscreenGalleryDetailActivity extends AppCompatActivity {
         mHideHandler.postDelayed(mShowPart2Runnable, UI_ANIMATION_DELAY);
     }
 
-    private void showInfoDialog(GalleryImage currentImage) {
+    private void showInfoDialog(String name, String description) {
         final Dialog dialog = new Dialog(this);
         dialog.setContentView(R.layout.dialog__gallery_detail_info);
         dialog.setTitle("Title...");
 
         // set the custom dialog components - text, image and button
         TextView nameTextView = dialog.findViewById(R.id.gallery_detail_info__name_textView);
-        nameTextView.setText(currentImage.getImageUrl());
+        nameTextView.setText(name);
 
         Button understoodButton = dialog.findViewById(R.id.gallery_detail_info__understood_button);
         understoodButton.setOnClickListener(new View.OnClickListener() {
@@ -220,9 +250,9 @@ public class FullscreenGalleryDetailActivity extends AppCompatActivity {
         TextView descriptionTextView = dialog.findViewById(
                 R.id.gallery_detail_info__description_textView
         );
-        descriptionTextView.setText(R.string.long_text_example);
+        descriptionTextView.setText(description);
         dialog.setCancelable(false);
-
+        // text decription & image textDescription is empty somehow
         dialog.show();
     }
 
@@ -233,5 +263,65 @@ public class FullscreenGalleryDetailActivity extends AppCompatActivity {
     private void delayedHide(int delayMillis) {
         mHideHandler.removeCallbacks(mHideRunnable);
         mHideHandler.postDelayed(mHideRunnable, delayMillis);
+    }
+}
+
+class DetailsLoaderAsyncTask extends AsyncTask<Void, Void, HashMap<String, String>> {
+
+    private WeakReference<Context> contextRef;
+    OnDescriptionsLoadedListener listener;
+
+    public DetailsLoaderAsyncTask(Context context) {
+        contextRef = new WeakReference<Context>(context);
+    }
+
+    public void setOnDescriptionsLoadedListener(OnDescriptionsLoadedListener listener) {
+        this.listener = listener;
+    }
+
+    protected HashMap<String, String> getHasMapFromJsonObject(JSONObject object) {
+        HashMap<String, String> map = new HashMap<>();
+        Iterator<String> keysItr = object.keys();
+        try {
+            while (keysItr.hasNext()) {
+                String key = keysItr.next();
+                String value = (String) object.get(key);
+                map.put(key.toLowerCase(), value);
+            }
+        } catch (JSONException ex) {
+            ex.printStackTrace();
+        }
+        return map;
+    }
+
+    @Override
+    protected HashMap<String, String> doInBackground(Void... voids) {
+        String json = null;
+        try {
+            InputStream is = contextRef.get().getAssets().open("gallery/descriptions.json");
+            int size = is.available();
+            byte[] buffer = new byte[size];
+            is.read(buffer);
+            is.close();
+            json = new String(buffer, "UTF-8");
+            JSONObject jsonObject = new JSONObject(json);
+            return getHasMapFromJsonObject(jsonObject);
+        } catch (IOException ex) {
+            ex.printStackTrace();
+            return new HashMap<>();
+        } catch (JSONException ex) {
+            ex.printStackTrace();
+            return new HashMap<>();
+        }
+    }
+
+    @Override
+    protected void onPostExecute(HashMap<String, String> result) {
+        super.onPostExecute(result);
+        listener.onDescriptionsLoaded(result);
+    }
+
+    public interface OnDescriptionsLoadedListener {
+        void onDescriptionsLoaded(HashMap<String, String> descriptions);
     }
 }

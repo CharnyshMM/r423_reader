@@ -28,7 +28,7 @@ public class GalleryImageItem extends GalleryListItem {
     @Override
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(image.imageUrl);
-        dest.writeString(image.textDescription);
+        dest.writeString(image.imageName);
     }
 
     public static final Parcelable.Creator<GalleryImageItem> CREATOR = new Parcelable.Creator<GalleryImageItem>() {

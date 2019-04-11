@@ -16,7 +16,7 @@
 
     <string name="title_activity_fullscreen_gallery_detail">FullscreenGalleryDetailActivity</string>
     <string name="fullscreen_gallery_detail__info_button">Description</string>
-    <string name="long_text_example" translatable="false">
+    <string name="long_text_example">
         Тропосферная радиосвязь (ТРСв) основана на использовании физического явления дальнего тропосферного распространения ультракоротких волн       (ДТР УКВ), открытого в конце 40-х годов ХХ века. Экспериментально было установлено, что УКВ рассеиваются и отражаются диэлектрическими неоднородностями воздушных масс тропосферы, распространяясь далеко за пределы радиовидимости
         Несмотря на то что уровень электрического поля, возникающего вследствие ДТР УКВ
         на расстоянии более чем 100 км, значительно ниже (на 65-85 дБ) уровня поля при наличии прямой видимости, но, тем не менее, он намного выше уровня поля, обусловленного дифракцией волн
@@ -35,4 +35,6 @@
 
     </string>
     <string name="understood">Understood!</string>
+    <string name="error__descriptions_not_loaded">Descriptions not loaded. Please try on another image</string>
+    <string name="error__no_description_for_image">Error! No decription provided for this image</string>
 </resources>

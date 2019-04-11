@@ -12,4 +12,6 @@
     <string name="error_image_not_loaded">Памылка! Не атрымалася загрузіць выяву</string>
     <string name="fullscreen_gallery_detail__info_button">Апісанне</string>
     <string name="understood">Зразумеў</string>
+    <string name="error__descriptions_not_loaded">"Апісанні не загружаныя. Пачакайце, калі ласка!\n "</string>
+    <string name="error__no_description_for_image">Памылка! Няма апісання для гэтага фатаздымка</string>
 </resources>
