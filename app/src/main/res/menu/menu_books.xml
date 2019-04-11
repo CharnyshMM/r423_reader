@@ -2,8 +2,13 @@
       xmlns:app="http://schemas.android.com/apk/res-auto"
       xmlns:tools="http://schemas.android.com/tools"
       tools:context="com.example.mikita.r423_reader.BooksActivity">
-    <item android:id="@+id/action_settings"
-          android:title="@string/action_settings"
+    <item android:id="@+id/action_gallery"
+          android:title="@string/gallery"
+          android:orderInCategory="100"
+          app:showAsAction="never"/>
+
+    <item android:id="@+id/action_reading_now"
+          android:title="@string/back_to_reading"
           android:orderInCategory="100"
           app:showAsAction="never"/>
 </menu>

@@ -173,16 +173,16 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.contents:
+            case R.id.action_contents:
                 Intent intent = new Intent(getApplicationContext(), ContentsActivity.class);
                 startActivityForResult(intent, CONTENTS_ACTIVITY_RESULT);
                 return true;
 
-            case R.id.wide_view_checkable:
+            case R.id.action_wide_view_checkable:
                 item.setChecked(!item.isChecked());
                 webView.getSettings().setUseWideViewPort(item.isChecked());
                 return true;
-            case R.id.increase_text: {
+            case R.id.action_increase_text: {
                 int textZoom = webView.getSettings().getTextZoom();
                 if (textZoom >= MAXIMUM_TEXT_ZOOM) {
                     Toast.makeText(getApplicationContext(), "Maximum achieved", Toast.LENGTH_SHORT).show();
@@ -191,7 +191,7 @@ public class MainActivity extends AppCompatActivity {
                 }
                 return true;
             }
-            case R.id.decrease_text: {
+            case R.id.action_decrease_text: {
                 int textZoom = webView.getSettings().getTextZoom();
                 if (textZoom <= MINIMUM_TEXT_ZOOM) {
                     Toast.makeText(getApplicationContext(), "Minimum achieved", Toast.LENGTH_SHORT).show();
@@ -200,13 +200,13 @@ public class MainActivity extends AppCompatActivity {
                 }
                 return true;
             }
-            case R.id.books: {
+            case R.id.action_books: {
                 Intent i = new Intent(getApplicationContext(), BooksActivity.class);
                 startActivity(i);
                 finish();
                 return true;
             }
-            case R.id.gallery:
+            case R.id.action_gallery:
                 Intent i = new Intent(getApplicationContext(), GalleryActivity.class);
                 startActivity(i);
                 finish();

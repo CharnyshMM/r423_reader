@@ -2,6 +2,9 @@ package com.example.mikita.r423_reader;
 
 import android.content.Intent;
 import android.content.res.AssetManager;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -46,9 +49,6 @@ public class GalleryActivity extends AppCompatActivity {
                         }
                     }
                 }
-//                else {
-//                    data.add(new GalleryImageItem(new GalleryImage("gallery/" + path, path, path)));
-//                }
             }
 
         } catch (IOException e){
@@ -102,6 +102,34 @@ public class GalleryActivity extends AppCompatActivity {
         };
         mAdapter = new GalleryAdapter(GalleryActivity.this, data, onItemClickListener);
         mRecyclerView.setAdapter(mAdapter);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_gallery, menu);
+        return true;
+    }
+
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.action_books: {
+                Intent i = new Intent(this, BooksActivity.class);
+                startActivity(i);
+                finish();
+                return true;
+            }
+            case R.id.action_reading_now: {
+                Intent i = new Intent(this, MainActivity.class);
+                startActivity(i);
+                finish();
+                return true;
+            }
+        }
+        return super.onOptionsItemSelected(item);
+
     }
 
     @Override

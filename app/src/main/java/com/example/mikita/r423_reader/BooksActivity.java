@@ -3,6 +3,9 @@ package com.example.mikita.r423_reader;
 import android.content.Intent;
 import android.content.res.AssetManager;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.ExpandableListAdapter;
 import android.widget.ExpandableListView;
@@ -88,6 +91,30 @@ public class BooksActivity extends AppCompatActivity {
                 return false;
             }
         });
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_books, menu);
+        return true;
+    }
+
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.action_gallery:
+                Intent i = new Intent(this, GalleryActivity.class);
+                startActivity(i);
+                finish();
+                return true;
+            case R.id.action_reading_now:
+                onBackPressed();
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
+
     }
 
     @Override

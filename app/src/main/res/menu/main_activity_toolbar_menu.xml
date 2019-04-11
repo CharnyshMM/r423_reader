@@ -2,23 +2,23 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
             android:title="@string/contents_string"
-            android:id="@+id/contents"/>
+            android:id="@+id/action_contents"/>
     <item
-        android:title="@string/wide_view_toggle"
-        android:checkable="true"
-        android:id="@+id/wide_view_checkable"/>
+            android:title="@string/wide_view_toggle"
+            android:checkable="true"
+            android:id="@+id/action_wide_view_checkable"/>
     <item
         android:title="@string/increase_text_string"
-        android:id="@+id/increase_text"/>
+        android:id="@+id/action_increase_text"/>
     <item
         android:title="@string/decrease_text_string"
-        android:id="@+id/decrease_text"/>
+        android:id="@+id/action_decrease_text"/>
 
     <item
         android:title="@string/books_string"
-        android:id="@+id/books"/>
+        android:id="@+id/action_books"/>
 
     <item
         android:title="@string/gallery"
-        android:id="@+id/gallery"/>
+        android:id="@+id/action_gallery"/>
 </menu>
