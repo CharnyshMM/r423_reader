@@ -39,4 +39,5 @@
     <string name="error__descriptions_not_loaded">Descriptions not loaded. Please try on another image</string>
     <string name="error__no_description_for_image">Error! No decription provided for this image</string>
     <string name="wide_view_toggle">Wide view</string>
+    <string name="back_to_reading">Back to reading</string>
 </resources>
