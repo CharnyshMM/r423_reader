@@ -59,16 +59,15 @@ public class MainActivity extends AppCompatActivity {
         String book = i.getStringExtra("book");
         String chapter = i.getStringExtra("chapter");
 
-
         String bookName = getBookPathToOpen(book, chapter);
         setTitle(bookName);
-
-        mJsScripts = loadJavaScript("scripts.js");
+        setTheme(R.style.AppTheme);
 
         webView.loadUrl(BOOKS_ASSET_PATH + "/" + bookName + BOOK_INDEX_FILENAME);
         webView.setWebViewClient(new WebViewClient() {
 
             public void onPageFinished(WebView view, String url) {
+                mJsScripts = loadJavaScript("scripts.js");
                 getChaptersJson();
             }
         });
