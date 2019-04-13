@@ -40,6 +40,9 @@
                 android:name=".ContentsActivity"
                 android:label="@string/contents_string">
         </activity>
+        <activity
+                android:name=".NavigationDrawer"
+                android:theme="@style/AppTheme.NoActionBar"/>
     </application>
 
 </manifest>
