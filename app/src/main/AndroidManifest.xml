@@ -11,7 +11,7 @@
             android:theme="@style/AppTheme">
         <activity
                 android:name=".MainActivity"
-                android:theme="@style/AppTheme.Launcher"
+                android:theme="@style/AppTheme.NoActionBar"
         >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
@@ -28,10 +28,10 @@
                 android:name=".GalleryDetailActivity"
                 android:theme="@style/AppTheme.NoActionBar">
         </activity>
-        <activity android:name=".GalleryActivity">
+        <activity android:name=".GalleryFragment">
         </activity>
         <activity
-                android:name=".BooksActivity"
+                android:name=".BooksFragment"
                 android:label="@string/title_activity_books"
                 >
         </activity>
@@ -40,9 +40,6 @@
                 android:name=".ContentsActivity"
                 android:label="@string/contents_string">
         </activity>
-        <activity
-                android:name=".NavigationDrawer"
-                android:theme="@style/AppTheme.NoActionBar"/>
     </application>
 
 </manifest>
