@@ -1,46 +1,61 @@
 package com.example.mikita.r423_reader;
 
 import android.content.Intent;
-import android.content.res.AssetManager;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
-import androidx.appcompat.app.AppCompatActivity;
+import android.view.*;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import android.os.Bundle;
+import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.concurrent.locks.ReentrantLock;
 
-public class GalleryActivity extends AppCompatActivity {
+public class GalleryFragment extends Fragment {
 
     private static final String ANDROID_ASSET_PATH_START = "file:///android_asset";
     private static final String IMAGES_ASSET_PATH = "file:///android_asset/gallery";
     private RecyclerView mRecyclerView;
     private GalleryAdapter mAdapter;
 
-    /*for each gallery item in folder assets/gallery
-    * there must be an EQUALLY named .jpg file and .json decription_file:
-    * Example:
-    *   р423_кунг.jpg
-    *   р423_кунг.txt
-    *   */
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_gallery);
+    private static ReentrantLock locker = new ReentrantLock();
 
-        setTitle(R.string.gallery);
+    private static GalleryFragment instance;
+
+    public static GalleryFragment getInstance(){
+        locker.lock();
+        try{
+            if (instance == null){
+                instance = new GalleryFragment();
+            }
+
+            return instance;
+        }finally {
+            locker.unlock();
+        }
+    }
+
+    /*for each gallery item in folder assets/gallery
+     * there must be an EQUALLY named .jpg file and .json decription_file:
+     * Example:
+     *   р423_кунг.jpg
+     *   р423_кунг.txt
+     *   */
+    @Nullable
+    @Override
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.fragment_gallery, container, false);
+        getActivity().setTitle(R.string.gallery);
 
         final ArrayList<GalleryListItem> data = new ArrayList<>();
         try{
-            String[] paths = getAssets().list("gallery");
+            String[] paths = getContext().getAssets().list("gallery");
             for (String path: paths){
                 boolean hasExtension = path.contains(".");
                 if (!hasExtension){
-                    String[] images = getAssets().list("gallery/" + path);
+                    String[] images = getContext().getAssets().list("gallery/" + path);
                     if (images.length != 0){
                         data.add(new GalleryHeaderItem(path));
                         for (String img: images){
@@ -55,8 +70,8 @@ public class GalleryActivity extends AppCompatActivity {
             e.printStackTrace();
         }
 
-        mRecyclerView = (RecyclerView) findViewById(R.id.gallery__images_recyclerView);
-        GridLayoutManager layoutManager = new GridLayoutManager(getApplicationContext(), 3);
+        mRecyclerView = (RecyclerView) view.findViewById(R.id.gallery__images_recyclerView);
+        GridLayoutManager layoutManager = new GridLayoutManager(getContext().getApplicationContext(), 3);
         layoutManager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
             @Override
             public int getSpanSize(int position) {
@@ -79,7 +94,7 @@ public class GalleryActivity extends AppCompatActivity {
         GalleryAdapter.OnItemClickListener onItemClickListener = new GalleryAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(int  position) {
-                Intent intent = new Intent(getApplicationContext(), FullscreenGalleryDetailActivity.class);
+                Intent intent = new Intent(getContext().getApplicationContext(), FullscreenGalleryDetailActivity.class);
                 ArrayList<GalleryImage> images = new ArrayList<>();
                 int dataPositionCounter = -1;
                 int imagesOnlyPositionCounter = -1;
@@ -100,11 +115,13 @@ public class GalleryActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         };
-        mAdapter = new GalleryAdapter(GalleryActivity.this, data, onItemClickListener);
+        mAdapter = new GalleryAdapter(getContext(), data, onItemClickListener);
         mRecyclerView.setAdapter(mAdapter);
+
+        return view;
     }
 
-    @Override
+    /*@Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.menu_gallery, menu);
@@ -116,13 +133,13 @@ public class GalleryActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.action_books: {
-                Intent i = new Intent(this, BooksActivity.class);
+                Intent i = new Intent(this, BooksFragment.class);
                 startActivity(i);
                 finish();
                 return true;
             }
             case R.id.action_reading_now: {
-                Intent i = new Intent(this, MainActivity.class);
+                Intent i = new Intent(this, BookFragment.class);
                 startActivity(i);
                 finish();
                 return true;
@@ -134,8 +151,8 @@ public class GalleryActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        Intent i = new Intent(this, MainActivity.class);
+        Intent i = new Intent(this, BookFragment.class);
         startActivity(i);
         finish();
-    }
+    }*/
 }
