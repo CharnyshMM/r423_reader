@@ -3,25 +3,22 @@ package com.example.mikita.r423_reader;
 import android.content.Intent;
 import android.content.res.AssetManager;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
-import android.widget.Button;
+import android.view.*;
 import android.widget.ExpandableListAdapter;
 import android.widget.ExpandableListView;
 import android.widget.LinearLayout;
-import androidx.core.widget.NestedScrollView;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-import android.view.View;
+import androidx.fragment.app.Fragment;
 
-import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.concurrent.locks.ReentrantLock;
 
-public class BooksActivity extends AppCompatActivity {
+public class BooksFragment extends Fragment {
 
     LinearLayout booksScrollView;
     ExpandableListView expandableListView;
@@ -29,23 +26,42 @@ public class BooksActivity extends AppCompatActivity {
     List<String> expandableListTitle;
     HashMap<String, List<String>> expandableListDetail;
 
+    private static ReentrantLock locker = new ReentrantLock();
+
+    private static BooksFragment instance;
+
+    public static BooksFragment getInstance(){
+        locker.lock();
+        try{
+            if (instance == null){
+                instance = new BooksFragment();
+            }
+
+            return instance;
+        }finally {
+            locker.unlock();
+        }
+    }
+
+    @Nullable
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_books);
-        booksScrollView = findViewById(R.id.books_linearLayout);
-        expandableListView = (ExpandableListView) findViewById(R.id.expandableListView);
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.fragment_books, container, false);
+        getActivity().setTitle(R.string.books_string);
+
+        booksScrollView = view.findViewById(R.id.books_linearLayout);
+        expandableListView = (ExpandableListView) view.findViewById(R.id.expandableListView);
 
         expandableListTitle = new ArrayList<String>();
         expandableListDetail = new HashMap<String, List<String>>();
         expandableListAdapter = new CustomExpandableBooksListAdapter(
-                getApplicationContext(),
+                getContext().getApplicationContext(),
                 expandableListTitle,
                 expandableListDetail
         );
         expandableListView.setAdapter(expandableListAdapter);
 
-        AssetManager assetManager = getAssets();
+        AssetManager assetManager = getContext().getAssets();
         String[] booksDirs = new String[0];
         try {
             booksDirs = assetManager.list("books");
@@ -81,31 +97,32 @@ public class BooksActivity extends AppCompatActivity {
                     int groupPosition,
                     int childPosition,
                     long id) {
-                String book = expandableListTitle.get(groupPosition);
+                /*String book = expandableListTitle.get(groupPosition);
                 String chapter = expandableListDetail.get(book).get(childPosition);
-                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                Intent intent = new Intent(getContext().getApplicationContext(), BookFragment.class);
                 intent.putExtra("book", book);
                 intent.putExtra("chapter", chapter);
-                startActivity(intent);
-                finish();
+                startActivity(intent);*/
                 return false;
             }
         });
+
+        return view;
     }
 
-    @Override
+    /*@Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.menu_books, menu);
         return true;
-    }
+    }*/
 
 
-    @Override
+    /*@Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.action_gallery:
-                Intent i = new Intent(this, GalleryActivity.class);
+                Intent i = new Intent(this, GalleryFragment.class);
                 startActivity(i);
                 finish();
                 return true;
@@ -119,8 +136,8 @@ public class BooksActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        Intent i = new Intent(this, MainActivity.class);
+        Intent i = new Intent(this, BookFragment.class);
         startActivity(i);
         finish();
-    }
+    }*/
 }
