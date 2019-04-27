@@ -42,4 +42,6 @@
     <string name="error__no_description_for_image">Error! No decription provided for this image</string>
     <string name="wide_view_toggle">Wide view</string>
     <string name="back_to_reading">Back to reading</string>
+    <string name="now_reading">Now reading</string>
+    <string name="resources">Resources</string>
 </resources>
