@@ -2,11 +2,14 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/booksFragment"
+        android:id="@+id/fragment_reading"
         android:title="@string/now_reading" />
 
-    <!--<item-->
-        <!--android:id="@+id/contents"-->
-        <!--android:title="@string/resources" />-->
+    <item
+        android:id="@+id/fragment_books"
+        android:title="@string/title_activity_books" />
 
+    <item
+        android:id="@+id/fragment_gallery"
+        android:title="@string/gallery"/>
 </menu>
