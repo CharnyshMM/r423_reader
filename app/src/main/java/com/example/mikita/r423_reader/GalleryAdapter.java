@@ -2,18 +2,24 @@ package com.example.mikita.r423_reader;
 
 import android.content.Context;
 import android.graphics.drawable.Drawable;
+import android.net.Uri;
+import android.os.AsyncTask;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import com.bumptech.glide.Glide;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.lang.ref.WeakReference;
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 
 public class GalleryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
@@ -90,17 +96,14 @@ public class GalleryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
             }
             case GalleryListItem.TYPE_IMAGE: {
                 GalleryImageItem imageItem = (GalleryImageItem)recyclerItems.get(position);
-                ImageViewHolder holder = (ImageViewHolder)viewHolder;
+                final ImageViewHolder holder = (ImageViewHolder)viewHolder;
 
-                try {
-                    InputStream stream = context.getAssets().open(imageItem.getImage().getImageUrl());
-                    Drawable d = Drawable.createFromStream(stream, null);
-                    holder.imageView.setImageDrawable(d);
-                    holder.setOnClickListener(onItemClickListener, position);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                    holder.imageView.setImageResource(R.drawable.not_found);
-                }
+                holder.imageView.setImageResource(R.drawable.not_found);
+
+                Glide.with(context)
+                        .load(Uri.parse("file:///android_asset/"+imageItem.getImage().getImageUrl()))
+                        .into(holder.imageView);
+                holder.setOnClickListener(onItemClickListener, position);
                 break;
             }
             default:
