@@ -94,7 +94,7 @@ public class GalleryFragment extends Fragment {
         GalleryAdapter.OnItemClickListener onItemClickListener = new GalleryAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(int  position) {
-                Intent intent = new Intent(getContext().getApplicationContext(), FullscreenGalleryDetailActivity.class);
+                Intent intent = new Intent(getActivity(), FullscreenGalleryDetailActivity.class);
                 ArrayList<GalleryImage> images = new ArrayList<>();
                 int dataPositionCounter = -1;
                 int imagesOnlyPositionCounter = -1;
@@ -139,7 +139,7 @@ public class GalleryFragment extends Fragment {
                 return true;
             }
             case R.id.action_reading_now: {
-                Intent i = new Intent(this, BookFragment.class);
+                Intent i = new Intent(this, ReadingFragment.class);
                 startActivity(i);
                 finish();
                 return true;
@@ -151,7 +151,7 @@ public class GalleryFragment extends Fragment {
 
     @Override
     public void onBackPressed() {
-        Intent i = new Intent(this, BookFragment.class);
+        Intent i = new Intent(this, ReadingFragment.class);
         startActivity(i);
         finish();
     }*/

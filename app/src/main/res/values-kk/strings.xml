@@ -14,4 +14,5 @@
     <string name="understood">Оны алды!</string>
     <string name="error__descriptions_not_loaded">Суреттер жүктелмеген. Осы немесе басқа суретте күте тұрыңыз.</string>
     <string name="back_to_reading">Оқу үшін</string>
+    <string name="message_press_back_again_to_exit">Шығу үшін BACK түймесін қайтадан басыңыз.</string>
 </resources>

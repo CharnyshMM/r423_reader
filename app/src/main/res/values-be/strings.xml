@@ -16,4 +16,5 @@
     <string name="error__no_description_for_image">Памылка! Няма апісання для гэтага фатаздымка</string>
     <string name="wide_view_toggle">Шырокі агляд</string>
     <string name="back_to_reading">Да чытання</string>
+    <string name="message_press_back_again_to_exit">Націсніце НАЗАД яшчэ раз, каб выйсці</string>
 </resources>
