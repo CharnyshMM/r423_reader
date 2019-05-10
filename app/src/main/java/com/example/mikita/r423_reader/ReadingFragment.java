@@ -85,7 +85,6 @@ public class ReadingFragment extends Fragment {
         }
         String bookName = getBookPathToOpen(book, chapter);
         getActivity().setTitle(bookName);
-        //getActivity().setTheme(R.style.AppTheme);
 
         webView.loadUrl(BOOKS_ASSET_PATH + "/" + bookName + BOOK_INDEX_FILENAME);
         webView.setWebViewClient(new WebViewClient() {
@@ -95,7 +94,7 @@ public class ReadingFragment extends Fragment {
                 getChaptersJson();
             }
         });
-        
+
         saveBookPathToSharedPreferences(bookName);
 
 

@@ -24,6 +24,7 @@ public class MainActivity extends AppCompatActivity implements BooksFragment.OnB
     String chapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        this.setTheme(R.style.AppTheme);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
