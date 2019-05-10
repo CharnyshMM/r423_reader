@@ -1,45 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          package="com.example.mikita.r423_reader">
+    package="com.example.mikita.r423_reader">
 
     <application
-            android:allowBackup="true"
-            android:icon="@mipmap/ic_launcher"
-            android:label="@string/app_name"
-            android:roundIcon="@mipmap/ic_launcher_round"
-            android:supportsRtl="true"
-            android:theme="@style/AppTheme">
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
         <activity
-                android:name=".MainActivity"
-                android:theme="@style/AppTheme.NoActionBar"
-        >
+            android:name=".MainActivity">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
-
-                <category android:name="android.intent.category.LAUNCHER"/>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-                android:name=".FullscreenGalleryDetailActivity"
-                android:configChanges="orientation|keyboardHidden|screenSize"
-                android:theme="@style/FullscreenTheme">
-        </activity>
-        <activity
-                android:name=".GalleryDetailActivity"
-                android:theme="@style/AppTheme.NoActionBar">
-        </activity>
-        <activity android:name=".GalleryFragment">
-        </activity>
-        <activity
-                android:name=".BooksFragment"
-                android:label="@string/title_activity_books"
-                >
-        </activity>
-
-        <activity
-                android:name=".ContentsActivity"
-                android:label="@string/contents_string">
-        </activity>
+        <activity android:name=".FullscreenGalleryDetailActivity"/>
+        <activity android:name=".ContentsActivity"/>
     </application>
 
 </manifest>
