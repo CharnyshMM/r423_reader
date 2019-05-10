@@ -67,6 +67,7 @@ public class ReadingFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_reading, container, false);
+        setHasOptionsMenu(true);
 
         webView = view.findViewById(R.id.main__webView);
         WebSettings webSettings = webView.getSettings();
@@ -198,7 +199,7 @@ public class ReadingFragment extends Fragment {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.action_contents:
-                Intent intent = new Intent(getContext().getApplicationContext(), ContentsActivity.class);
+                Intent intent = new Intent(getActivity(), ContentsActivity.class);
                 startActivityForResult(intent, CONTENTS_ACTIVITY_RESULT);
                 return true;
 
@@ -230,8 +231,8 @@ public class ReadingFragment extends Fragment {
         }
     }
 
-    public void onActivityResult(int resultCode, Intent data)
-    {
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (resultCode == RESULT_OK) {
             String headerId = data.getExtras().getString("HeaderID", null);
             if (headerId != null) {
@@ -268,6 +269,7 @@ public class ReadingFragment extends Fragment {
                 });
             }
         }
+        super.onActivityResult(requestCode, resultCode, data);
     }
 
     private String loadJavaScript(String fileName) {

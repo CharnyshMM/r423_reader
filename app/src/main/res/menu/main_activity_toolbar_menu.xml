@@ -13,12 +13,4 @@
     <item
         android:title="@string/decrease_text_string"
         android:id="@+id/action_decrease_text"/>
-
-    <item
-        android:title="@string/books_string"
-        android:id="@+id/action_books"/>
-
-    <item
-        android:title="@string/gallery"
-        android:id="@+id/action_gallery"/>
 </menu>

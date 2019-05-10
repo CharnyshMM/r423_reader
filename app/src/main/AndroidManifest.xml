@@ -17,6 +17,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".FullscreenGalleryDetailActivity"/>
+        <activity android:name=".ContentsActivity"/>
     </application>
 
 </manifest>
