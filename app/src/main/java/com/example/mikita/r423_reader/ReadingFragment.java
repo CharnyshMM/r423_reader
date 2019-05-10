@@ -39,6 +39,7 @@ public class ReadingFragment extends Fragment {
     private static final String TAG = "ReadingFragment";
     private static final int MAXIMUM_TEXT_ZOOM = 150;
     private static final int MINIMUM_TEXT_ZOOM = 50;
+    private static final int INITIAL_SCALE = 250;
     private static final String ANDROID_ASSET_PATH_START = "file:///android_asset";
     private static final String BOOKS_ASSET_PATH = "file:///android_asset/books";
     private static final String BOOK_INDEX_FILENAME = "index.htm";
@@ -74,7 +75,7 @@ public class ReadingFragment extends Fragment {
         webSettings.setJavaScriptEnabled(true);
         webSettings.setBuiltInZoomControls(true);
         webSettings.setDisplayZoomControls(false);
-
+        webView.setInitialScale(INITIAL_SCALE);
         String book = null;
         String chapter = null;
         Bundle b = getArguments();
@@ -94,6 +95,7 @@ public class ReadingFragment extends Fragment {
                 getChaptersJson();
             }
         });
+        
         saveBookPathToSharedPreferences(bookName);
 
 
@@ -206,6 +208,13 @@ public class ReadingFragment extends Fragment {
             case R.id.action_wide_view_checkable:
                 item.setChecked(!item.isChecked());
                 webView.getSettings().setUseWideViewPort(item.isChecked());
+                if (item.isChecked()) {
+                    webView.setInitialScale(100);
+                } else {
+                    webView.setInitialScale(INITIAL_SCALE);
+                    webView.reload();
+                }
+
                 return true;
             case R.id.action_increase_text: {
                 int textZoom = webView.getSettings().getTextZoom();
