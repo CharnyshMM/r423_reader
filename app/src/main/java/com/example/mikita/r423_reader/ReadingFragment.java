@@ -17,7 +17,6 @@ import android.webkit.WebViewClient;
 import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import androidx.fragment.app.Fragment;
 import com.google.gson.Gson;
@@ -33,11 +32,11 @@ import java.util.concurrent.locks.ReentrantLock;
 
 import static android.app.Activity.RESULT_OK;
 
-public class BookFragment extends Fragment {
+public class ReadingFragment extends Fragment {
 
     public static final int CONTENTS_ACTIVITY_RESULT = 1;
 
-    private static final String TAG = "BookFragment";
+    private static final String TAG = "ReadingFragment";
     private static final int MAXIMUM_TEXT_ZOOM = 150;
     private static final int MINIMUM_TEXT_ZOOM = 50;
     private static final String ANDROID_ASSET_PATH_START = "file:///android_asset";
@@ -45,17 +44,17 @@ public class BookFragment extends Fragment {
     private static final String BOOK_INDEX_FILENAME = "index.htm";
 
     private static ReentrantLock locker = new ReentrantLock();
-    private static BookFragment instance;
+    private static ReadingFragment instance;
 
     private String mJsScripts;
 
     WebView webView;
 
-    public static BookFragment getInstance(){
+    public static ReadingFragment getInstance(){
         locker.lock();
         try{
             if (instance == null){
-                instance = new BookFragment();
+                instance = new ReadingFragment();
             }
 
             return instance;
@@ -67,7 +66,7 @@ public class BookFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_book, container, false);
+        View view = inflater.inflate(R.layout.fragment_reading, container, false);
 
         webView = view.findViewById(R.id.main__webView);
         WebSettings webSettings = webView.getSettings();
@@ -75,10 +74,13 @@ public class BookFragment extends Fragment {
         webSettings.setBuiltInZoomControls(true);
         webSettings.setDisplayZoomControls(false);
 
-        Intent i = getActivity().getIntent();
-        String book = i.getStringExtra("book");
-        String chapter = i.getStringExtra("chapter");
-
+        String book = null;
+        String chapter = null;
+        Bundle b = getArguments();
+        if (b != null) {
+            book = b.getString("book");
+            chapter = b.getString("chapter");
+        }
         String bookName = getBookPathToOpen(book, chapter);
         getActivity().setTitle(bookName);
         //getActivity().setTheme(R.style.AppTheme);
@@ -195,7 +197,7 @@ public class BookFragment extends Fragment {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-            /*case R.id.action_contents:
+            case R.id.action_contents:
                 Intent intent = new Intent(getContext().getApplicationContext(), ContentsActivity.class);
                 startActivityForResult(intent, CONTENTS_ACTIVITY_RESULT);
                 return true;
@@ -222,17 +224,7 @@ public class BookFragment extends Fragment {
                 }
                 return true;
             }
-            case R.id.action_books: {
-                Intent i = new Intent(getContext().getApplicationContext(), BooksFragment.class);
-                startActivity(i);
-                finish();
-                return true;
-            }
-            case R.id.action_gallery:
-                Intent i = new Intent(getContext().getApplicationContext(), GalleryFragment.class);
-                startActivity(i);
-                finish();
-                return true;*/
+
             default:
                 return super.onOptionsItemSelected(item);
         }
@@ -264,7 +256,7 @@ public class BookFragment extends Fragment {
                                 }
                             }
                         } catch (IOException e) {
-                            Log.e("TAG", "BookFragment: IOException", e);
+                            Log.e("TAG", "ReadingFragment: IOException", e);
                         } finally {
                             try {
                                 reader.close();

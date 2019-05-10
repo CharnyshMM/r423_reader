@@ -1,6 +1,6 @@
 package com.example.mikita.r423_reader;
 
-import android.content.Intent;
+import android.content.Context;
 import android.content.res.AssetManager;
 import android.os.Bundle;
 import android.view.*;
@@ -9,7 +9,6 @@ import android.widget.ExpandableListView;
 import android.widget.LinearLayout;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
 import java.io.IOException;
@@ -25,8 +24,10 @@ public class BooksFragment extends Fragment {
     ExpandableListAdapter expandableListAdapter;
     List<String> expandableListTitle;
     HashMap<String, List<String>> expandableListDetail;
+    private OnBookSelectedListener onBookSelectedListener;
 
     private static ReentrantLock locker = new ReentrantLock();
+
 
     private static BooksFragment instance;
 
@@ -97,17 +98,35 @@ public class BooksFragment extends Fragment {
                     int groupPosition,
                     int childPosition,
                     long id) {
-                /*String book = expandableListTitle.get(groupPosition);
-                String chapter = expandableListDetail.get(book).get(childPosition);
-                Intent intent = new Intent(getContext().getApplicationContext(), BookFragment.class);
+                /*
+
+                Intent intent = new Intent(getContext().getApplicationContext(), ReadingFragment.class);
                 intent.putExtra("book", book);
                 intent.putExtra("chapter", chapter);
                 startActivity(intent);*/
+                String book = expandableListTitle.get(groupPosition);
+                String chapter = expandableListDetail.get(book).get(childPosition);
+                if(onBookSelectedListener != null) {
+                    onBookSelectedListener.onBookSelectedListener(book, chapter);
+                }
                 return false;
             }
         });
 
         return view;
+    }
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        if (context instanceof OnBookSelectedListener) {
+            onBookSelectedListener = (OnBookSelectedListener) context;
+        }
+    }
+
+
+    public interface OnBookSelectedListener {
+        void onBookSelectedListener(String book, String chapter);
     }
 
     /*@Override
@@ -136,7 +155,7 @@ public class BooksFragment extends Fragment {
 
     @Override
     public void onBackPressed() {
-        Intent i = new Intent(this, BookFragment.class);
+        Intent i = new Intent(this, ReadingFragment.class);
         startActivity(i);
         finish();
     }*/
