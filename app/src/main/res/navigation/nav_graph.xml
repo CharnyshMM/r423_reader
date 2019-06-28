@@ -19,7 +19,7 @@
         android:label="fragment_book"
         tools:layout="@layout/fragment_reading" />
     <fragment android:id="@+id/fragment_books" android:name="com.example.mikita.r423_reader.BooksFragment"
-              android:label="fragment_books" tools:layout="@layout/fragment_books">
+              android:label="fragment_books" tools:layout="@layout/content_books">
         <action android:id="@+id/action_booksFragment_to_readingFragment" app:destination="@id/fragment_reading"/>
     </fragment>
     <fragment android:id="@+id/fragment_gallery" android:name="com.example.mikita.r423_reader.GalleryFragment"

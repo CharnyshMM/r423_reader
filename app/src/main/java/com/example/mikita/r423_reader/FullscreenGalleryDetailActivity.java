@@ -49,7 +49,7 @@ public class FullscreenGalleryDetailActivity extends AppCompatActivity {
      */
     private static final int UI_ANIMATION_DELAY = 300;
     private final Handler mHideHandler = new Handler();
-    private ViewPager mViewPager;
+    private ExceptionsHidingViewPager mViewPager;
     private final Runnable mHidePart2Runnable = new Runnable() {
         @SuppressLint("InlinedApi")
         @Override

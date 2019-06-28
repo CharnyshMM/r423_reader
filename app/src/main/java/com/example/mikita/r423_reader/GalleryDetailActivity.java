@@ -35,7 +35,7 @@ public class GalleryDetailActivity extends AppCompatActivity {
     /**
      * The {@link ViewPager} that will host the section contents.
      */
-    private ViewPager mViewPager;
+    private ExceptionsHidingViewPager mViewPager;
 
     private ArrayList<GalleryImage> imageArrayList;
     private int currentPosition;
@@ -53,10 +53,14 @@ public class GalleryDetailActivity extends AppCompatActivity {
 
         // Create the adapter that will return a fragment for each of the three
         // primary sections of the activity.
-        mSectionsPagerAdapter = new GalleryDetailSectionsPagerAdapter(getSupportFragmentManager(), imageArrayList, null);
+        mSectionsPagerAdapter = new GalleryDetailSectionsPagerAdapter(
+                getSupportFragmentManager(),
+                imageArrayList,
+                null
+        );
 
         // Set up the ViewPager with the sections adapter.
-        mViewPager = (ViewPager) findViewById(R.id.container);
+        mViewPager = (ExceptionsHidingViewPager) findViewById(R.id.container);
         mViewPager.setAdapter(mSectionsPagerAdapter);
 
 

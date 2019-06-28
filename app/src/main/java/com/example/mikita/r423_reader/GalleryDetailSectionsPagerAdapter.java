@@ -99,6 +99,7 @@ public class GalleryDetailSectionsPagerAdapter extends FragmentPagerAdapter {
                                  Bundle savedInstanceState) {
             View rootView = inflater.inflate(R.layout.fragment_detail, container, false);
             final PhotoView imageView = (PhotoView) rootView.findViewById(R.id.gallery__detail_imageView);
+            imageView.setMinimumScale(1f);
             imageView.setOnPhotoTapListener(new PhotoViewAttacher.OnPhotoTapListener() {
                 @Override
                 public void onPhotoTap(View view, float x, float y) {
