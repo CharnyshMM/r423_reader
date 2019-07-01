@@ -2,14 +2,11 @@ package com.example.mikita.r423_reader;
 
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentPagerAdapter;
+import androidx.fragment.app.*;
 import uk.co.senab.photoview.PhotoView;
 import uk.co.senab.photoview.PhotoViewAttacher;
 
@@ -17,9 +14,9 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 
-public class GalleryDetailSectionsPagerAdapter extends FragmentPagerAdapter {
+public class GalleryDetailSectionsPagerAdapter extends FragmentStatePagerAdapter {
     public ArrayList<GalleryImage> data = new ArrayList<>();
-    PlaceholderFragment.OnImageTapListener onImageTapListener;
+    final PlaceholderFragment.OnImageTapListener onImageTapListener;
 
     public GalleryDetailSectionsPagerAdapter(FragmentManager fm, ArrayList<GalleryImage> data, PlaceholderFragment.OnImageTapListener listener) {
         super(fm);
@@ -50,6 +47,8 @@ public class GalleryDetailSectionsPagerAdapter extends FragmentPagerAdapter {
         return data.get(position).getImageUrl();
     }
 
+
+
     public static class PlaceholderFragment extends Fragment {
         /**
          * The fragment argument representing the section number for this
@@ -70,6 +69,7 @@ public class GalleryDetailSectionsPagerAdapter extends FragmentPagerAdapter {
             this.pos = args.getInt(ARG_SECTION_NUMBER);
             this.name = args.getString(ARG_IMG_TITLE);
             this.url = args.getString(ARG_IMG_URL);
+
         }
 
         /**
