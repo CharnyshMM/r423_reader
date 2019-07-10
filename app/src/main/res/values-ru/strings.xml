@@ -17,4 +17,6 @@
     <string name="wide_view_toggle">Широкий обзор</string>
     <string name="back_to_reading">К чтению</string>
     <string name="message_press_back_again_to_exit">Нажмите НАЗАД еще раз, чтобы выйти</string>
+    <string name="maximum_font_size_achieved">Это наибольший размер шрифта</string>
+    <string name="minimum_font_size_reached">Это наименьший размер шрифта</string>
 </resources>

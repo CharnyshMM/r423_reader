@@ -168,7 +168,14 @@ public class FullscreenGalleryDetailActivity extends AppCompatActivity {
 
             @Override
             public void onPageSelected(int position) {
-                setTitle(imageArrayList.get(position).getImageName());
+                String name = imageArrayList.get(position).getImageName();
+                int index = name.indexOf("/");
+                if (index < 0 || index + 1 == name.length())
+                {
+                    setTitle(name);
+                } else {
+                    setTitle(name.substring(index+1));
+                }
             }
 
             @Override
