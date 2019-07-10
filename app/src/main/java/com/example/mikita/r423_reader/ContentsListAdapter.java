@@ -9,6 +9,7 @@ import java.util.List;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+import com.example.mikita.r423_reader.storage.Chapter;
 
 public class ContentsListAdapter extends RecyclerView.Adapter<ContentsListAdapter.MyViewHolder> {
     public List<Chapter> getFeedItems() {
