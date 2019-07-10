@@ -3,7 +3,7 @@ apply plugin: 'com.android.application'
 android {
     compileSdkVersion 28
     defaultConfig {
-        applicationId "com.example.mikita.r423_reader"
+        applicationId "by.mil.bsuir.r423_reader"
         minSdkVersion 21
         targetSdkVersion 28
         versionCode 1

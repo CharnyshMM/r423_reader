@@ -1,4 +1,4 @@
-package com.example.mikita.r423_reader.fragments.adapters;
+package by.mil.bsuir.r423_reader.fragments.adapters;
 
 import android.content.Context;
 import android.net.Uri;
@@ -10,10 +10,10 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
-import com.example.mikita.r423_reader.model.GalleryHeaderItem;
-import com.example.mikita.r423_reader.model.GalleryImageItem;
-import com.example.mikita.r423_reader.model.GalleryListItem;
-import com.example.mikita.r423_reader.R;
+import by.mil.bsuir.r423_reader.model.GalleryHeaderItem;
+import by.mil.bsuir.r423_reader.model.GalleryImageItem;
+import by.mil.bsuir.r423_reader.model.GalleryListItem;
+import by.mil.bsuir.r423_reader.R;
 
 import java.util.List;
 

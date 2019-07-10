@@ -1,4 +1,4 @@
-package com.example.mikita.r423_reader.fragments.adapters;
+package by.mil.bsuir.r423_reader.fragments.adapters;
 
 import android.content.Context;
 import android.graphics.Typeface;
@@ -8,7 +8,7 @@ import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
 import android.widget.TextView;
 
-import com.example.mikita.r423_reader.R;
+import by.mil.bsuir.r423_reader.R;
 
 import java.util.HashMap;
 import java.util.List;

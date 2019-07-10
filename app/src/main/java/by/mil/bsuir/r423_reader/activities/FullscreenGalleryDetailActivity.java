@@ -1,4 +1,4 @@
-package com.example.mikita.r423_reader.activities;
+package by.mil.bsuir.r423_reader.activities;
 
 import android.annotation.SuppressLint;
 import android.app.Dialog;
@@ -15,10 +15,10 @@ import android.view.MotionEvent;
 import android.view.View;
 import androidx.viewpager.widget.ViewPager;
 
-import com.example.mikita.r423_reader.fragments.ExceptionsHidingViewPager;
-import com.example.mikita.r423_reader.model.GalleryImage;
-import com.example.mikita.r423_reader.R;
-import com.example.mikita.r423_reader.fragments.adapters.GalleryDetailSectionsPagerAdapter;
+import by.mil.bsuir.r423_reader.fragments.ExceptionsHidingViewPager;
+import by.mil.bsuir.r423_reader.model.GalleryImage;
+import by.mil.bsuir.r423_reader.R;
+import by.mil.bsuir.r423_reader.fragments.adapters.GalleryDetailSectionsPagerAdapter;
 
 import org.json.JSONException;
 import org.json.JSONObject;
