@@ -1,4 +1,4 @@
-package com.example.mikita.r423_reader;
+package com.example.mikita.r423_reader.activities;
 
 import android.os.Bundle;
 
@@ -12,6 +12,8 @@ import androidx.navigation.NavController;
 import androidx.navigation.NavDestination;
 import androidx.navigation.Navigation;
 
+import com.example.mikita.r423_reader.R;
+import com.example.mikita.r423_reader.fragments.BooksFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import static androidx.navigation.ui.NavigationUI.setupWithNavController;

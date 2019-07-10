@@ -1,11 +1,11 @@
-package com.example.mikita.r423_reader;
+package com.example.mikita.r423_reader.model;
 
 import android.os.Parcel;
 import android.os.Parcelable;
 
 public class GalleryImage implements Parcelable {
     protected String imageUrl;
-    protected String imageName;
+    public String imageName;
 
     public String getImageName() {
         return imageName;

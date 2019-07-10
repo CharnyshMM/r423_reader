@@ -1,9 +1,7 @@
-package com.example.mikita.r423_reader;
+package com.example.mikita.r423_reader.fragments.adapters;
 
 import android.content.Context;
-import android.graphics.drawable.Drawable;
 import android.net.Uri;
-import android.os.AsyncTask;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,14 +10,11 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
-import org.json.JSONException;
-import org.json.JSONObject;
+import com.example.mikita.r423_reader.model.GalleryHeaderItem;
+import com.example.mikita.r423_reader.model.GalleryImageItem;
+import com.example.mikita.r423_reader.model.GalleryListItem;
+import com.example.mikita.r423_reader.R;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.lang.ref.WeakReference;
-import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 
 public class GalleryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {

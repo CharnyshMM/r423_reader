@@ -1,10 +1,9 @@
-package com.example.mikita.r423_reader;
+package com.example.mikita.r423_reader.activities;
 
 import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.content.Context;
 import android.os.AsyncTask;
-import android.util.JsonReader;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -15,6 +14,12 @@ import android.os.Handler;
 import android.view.MotionEvent;
 import android.view.View;
 import androidx.viewpager.widget.ViewPager;
+
+import com.example.mikita.r423_reader.fragments.ExceptionsHidingViewPager;
+import com.example.mikita.r423_reader.model.GalleryImage;
+import com.example.mikita.r423_reader.R;
+import com.example.mikita.r423_reader.fragments.adapters.GalleryDetailSectionsPagerAdapter;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -22,7 +27,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
-import java.util.Dictionary;
 import java.util.HashMap;
 import java.util.Iterator;
 

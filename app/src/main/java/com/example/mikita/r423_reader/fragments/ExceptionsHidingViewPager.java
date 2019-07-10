@@ -1,4 +1,4 @@
-package com.example.mikita.r423_reader;
+package com.example.mikita.r423_reader.fragments;
 
 import android.content.Context;
 import android.util.AttributeSet;
