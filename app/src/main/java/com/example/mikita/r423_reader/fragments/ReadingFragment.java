@@ -1,4 +1,4 @@
-package com.example.mikita.r423_reader;
+package com.example.mikita.r423_reader.fragments;
 
 import android.annotation.TargetApi;
 import android.content.Context;
@@ -19,6 +19,9 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import android.os.Bundle;
 import androidx.fragment.app.Fragment;
+
+import com.example.mikita.r423_reader.activities.ContentsActivity;
+import com.example.mikita.r423_reader.R;
 import com.example.mikita.r423_reader.storage.Chapter;
 import com.example.mikita.r423_reader.storage.CurrentBookStorage;
 import com.google.gson.Gson;

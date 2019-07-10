@@ -6,7 +6,7 @@
     app:startDestination="@id/fragment_reading">
 
     <fragment
-            android:name="com.example.mikita.r423_reader.BooksFragment"
+            android:name="com.example.mikita.r423_reader.fragments.BooksFragment"
             android:label="fragment_resources"
             tools:layout="@layout/fragment_books" android:id="@+id/fragment_resources">
         <action
@@ -15,13 +15,13 @@
     </fragment>
     <fragment
         android:id="@+id/fragment_reading"
-        android:name="com.example.mikita.r423_reader.ReadingFragment"
+        android:name="com.example.mikita.r423_reader.fragments.ReadingFragment"
         android:label="fragment_book"
         tools:layout="@layout/fragment_reading" />
-    <fragment android:id="@+id/fragment_books" android:name="com.example.mikita.r423_reader.BooksFragment"
+    <fragment android:id="@+id/fragment_books" android:name="com.example.mikita.r423_reader.fragments.BooksFragment"
               android:label="fragment_books" tools:layout="@layout/content_books">
         <action android:id="@+id/action_booksFragment_to_readingFragment" app:destination="@id/fragment_reading"/>
     </fragment>
-    <fragment android:id="@+id/fragment_gallery" android:name="com.example.mikita.r423_reader.GalleryFragment"
+    <fragment android:id="@+id/fragment_gallery" android:name="com.example.mikita.r423_reader.fragments.GalleryFragment"
               android:label="fragment_gallery" tools:layout="@layout/fragment_gallery"/>
 </navigation>

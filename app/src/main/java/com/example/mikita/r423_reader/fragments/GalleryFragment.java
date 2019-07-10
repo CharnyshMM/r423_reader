@@ -1,4 +1,4 @@
-package com.example.mikita.r423_reader;
+package com.example.mikita.r423_reader.fragments;
 
 import android.content.Intent;
 import android.view.*;
@@ -8,6 +8,14 @@ import android.os.Bundle;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.mikita.r423_reader.activities.FullscreenGalleryDetailActivity;
+import com.example.mikita.r423_reader.fragments.adapters.GalleryAdapter;
+import com.example.mikita.r423_reader.model.GalleryHeaderItem;
+import com.example.mikita.r423_reader.model.GalleryImage;
+import com.example.mikita.r423_reader.model.GalleryImageItem;
+import com.example.mikita.r423_reader.model.GalleryListItem;
+import com.example.mikita.r423_reader.R;
 
 import java.io.IOException;
 import java.util.ArrayList;

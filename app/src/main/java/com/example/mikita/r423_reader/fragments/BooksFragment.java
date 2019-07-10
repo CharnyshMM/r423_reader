@@ -1,4 +1,4 @@
-package com.example.mikita.r423_reader;
+package com.example.mikita.r423_reader.fragments;
 
 import android.content.Context;
 import android.content.res.AssetManager;
@@ -10,6 +10,9 @@ import android.widget.LinearLayout;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+
+import com.example.mikita.r423_reader.fragments.adapters.CustomExpandableBooksListAdapter;
+import com.example.mikita.r423_reader.R;
 
 import java.io.IOException;
 import java.util.ArrayList;

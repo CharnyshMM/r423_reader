@@ -1,4 +1,4 @@
-package com.example.mikita.r423_reader;
+package com.example.mikita.r423_reader.activities;
 
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -8,6 +8,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.mikita.r423_reader.R;
+import com.example.mikita.r423_reader.fragments.adapters.ContentsListAdapter;
 import com.example.mikita.r423_reader.storage.Chapter;
 import com.example.mikita.r423_reader.storage.CurrentBookStorage;
 
