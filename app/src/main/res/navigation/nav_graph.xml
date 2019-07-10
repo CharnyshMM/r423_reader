@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/fragment_reading">
+    app:startDestination="@id/fragment_start">
 
     <fragment
             android:name="com.example.mikita.r423_reader.BooksFragment"
@@ -24,4 +24,6 @@
     </fragment>
     <fragment android:id="@+id/fragment_gallery" android:name="com.example.mikita.r423_reader.GalleryFragment"
               android:label="fragment_gallery" tools:layout="@layout/fragment_gallery"/>
+    <fragment android:id="@+id/fragment_start" android:name="com.example.mikita.r423_reader.StartFragment"
+              android:label="fragment_start" tools:layout="@layout/fragment_start"/>
 </navigation>

@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+>
+    <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+    >
+        <RelativeLayout
+                     android:layout_width="match_parent"
+                     android:layout_height="match_parent"
+                     android:paddingVertical="@dimen/text_margin"
+                     >
+            <TextView
+                    android:id="@+id/start_fragment__project_title_textView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Тропосферная радиостанция Р-423"
+                    android:textAlignment="center"
+                    android:fontFamily="serif"
+                    android:textSize="27sp"
+                    android:textColor="@color/colorPrimaryDark"
+            />
+
+            <TextView
+                    android:id="@+id/start_fragment__project_subtitle_textView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/start_fragment__project_title_textView"
+                    android:text="Электронно-методический комплекс для
+                     платформы Android"
+                    android:textAlignment="center"
+                    android:fontFamily="serif"
+                    android:textSize="25sp"
+                    android:textColor="@color/black_overlay"
+            />
+
+            <ImageView
+                    android:id="@+id/start_fragment__chevron"
+                    android:src="@drawable/chevron_320px"
+                    android:adjustViewBounds="true"
+                    android:scaleType="fitCenter"
+                    android:layout_height="300dp"
+                    android:layout_width="wrap_content"
+                    android:layout_centerHorizontal="true"
+                     android:layout_below="@id/start_fragment__project_subtitle_textView"
+            />
+
+            <!--Remove this to remove names of developers. Start-->
+            <TableLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/text_margin"
+                    android:layout_below="@id/start_fragment__chevron"
+                    android:layout_alignParentBottom="true"
+                    android:stretchColumns="1"
+            >
+                <TableRow>
+                    <TextView
+                        android:layout_column="1"
+                        android:text="Руководитель:"
+                    />
+                    <TextView
+                        android:text="Исполнители:"
+                    />
+                </TableRow>
+                <TableRow>
+                    <TextView
+                            android:layout_column="1"
+                            android:text="начальник цикла"
+                    />
+                    <TextView
+                            android:text="Гуз И."
+                    />
+                </TableRow>
+                <TableRow>
+                    <TextView
+                            android:layout_column="1"
+                            android:text="Романовский С.В."
+                    />
+                    <TextView
+                            android:text="Линник Г.И."
+                    />
+                </TableRow>
+                <TableRow>
+
+                <TextView
+                        android:layout_column="2"
+                        android:text="Черныш Н.Н."
+                />
+            </TableRow>
+                <TableRow>
+
+                    <TextView
+                            android:layout_column="2"
+                            android:text="Черныш Н.Н."
+                    />
+                </TableRow>
+                <TableRow>
+
+                    <TextView
+                            android:layout_column="2"
+                            android:text="Черныш Н.Н."
+                    />
+                </TableRow>
+
+            </TableLayout>
+            <!--End-->
+</RelativeLayout>
+    </ScrollView>
+</LinearLayout>
