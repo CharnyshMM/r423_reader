@@ -3,6 +3,9 @@
 *.ap_
 *.aab
 
+# macOS
+.DS_Store
+
 # Files for the ART/Dalvik VM
 *.dex
 
@@ -27,11 +30,19 @@ proguard/
 # Log Files
 *.log
 
-# Android Studio Navigation editor temp files
-.navigation/
-
-# Android Studio captures folder
+# Android Studio
+*.iml
+.idea
+#.idea/workspace.xml - remove # and delete .idea if it better suit your needs.
+.gradle
+build/
+.navigation
 captures/
+output.json 
+
+#NDK
+obj/
+.externalNativeBuild
 
 # IntelliJ
 *.iml
