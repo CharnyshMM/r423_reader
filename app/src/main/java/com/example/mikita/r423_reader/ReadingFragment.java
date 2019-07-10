@@ -19,6 +19,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import android.os.Bundle;
 import androidx.fragment.app.Fragment;
+import com.example.mikita.r423_reader.storage.Chapter;
+import com.example.mikita.r423_reader.storage.CurrentBookStorage;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 

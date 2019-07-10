@@ -8,9 +8,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import com.example.mikita.r423_reader.storage.Chapter;
+import com.example.mikita.r423_reader.storage.CurrentBookStorage;
 
-import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 public class ContentsActivity extends AppCompatActivity {
