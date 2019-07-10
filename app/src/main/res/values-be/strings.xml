@@ -17,4 +17,6 @@
     <string name="wide_view_toggle">Шырокі агляд</string>
     <string name="back_to_reading">Да чытання</string>
     <string name="message_press_back_again_to_exit">Націсніце НАЗАД яшчэ раз, каб выйсці</string>
+    <string name="maximum_font_size_achieved">Гэта найвялікшы памер шрыфту</string>
+    <string name="minimum_font_size_reached">Гэта найменьшы памер шрыфту</string>
 </resources>

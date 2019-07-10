@@ -74,13 +74,13 @@
                       </LayoutPositions>
                     </value>
                   </entry>
-                  <entry key="fullscreenGalleryDetailFragment">
+                  <entry key="fragment_start">
                     <value>
                       <LayoutPositions>
                         <option name="myPosition">
                           <Point>
-                            <option name="x" value="-461" />
-                            <option name="y" value="26" />
+                            <option name="x" value="-396" />
+                            <option name="y" value="44" />
                           </Point>
                         </option>
                       </LayoutPositions>

@@ -15,4 +15,9 @@
     <string name="error__descriptions_not_loaded">Суреттер жүктелмеген. Осы немесе басқа суретте күте тұрыңыз.</string>
     <string name="back_to_reading">Оқу үшін</string>
     <string name="message_press_back_again_to_exit">Шығу үшін BACK түймесін қайтадан басыңыз.</string>
+    <string name="maximum_font_size_achieved">ең үлкен мәтін өлшеміне жетті</string>
+    <string name="minimum_font_size_reached">Бұл ең кішкентай қаріп өлшемі.</string>
+    <string name="error__no_description_for_image">Қате! Бұл фотосуреттің ешқандай сипаттамасы жоқ.</string>
+    <string name="error_image_not_loaded">Қате! Бұл фотосуретті жүктеу сәтсіз аяқталды.</string>
+    <string name="wide_view_toggle">Кең шолу</string>
 </resources>
