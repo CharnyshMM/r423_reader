@@ -1,4 +1,4 @@
-package com.example.mikita.r423_reader
+package by.mil.bsuir.r423_reader
 
 import androidx.test.InstrumentationRegistry
 import androidx.test.runner.AndroidJUnit4
@@ -19,6 +19,6 @@ class ExampleInstrumentedTest {
     fun useAppContext() {
         // Context of the app under test.
         val appContext = InstrumentationRegistry.getTargetContext()
-        assertEquals("com.example.mikita.r423_reader", appContext.packageName)
+        assertEquals("by.mil.bsuir.r423_reader", appContext.packageName)
     }
 }

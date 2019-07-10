@@ -1,4 +1,4 @@
-package com.example.mikita.r423_reader.fragments.adapters;
+package by.mil.bsuir.r423_reader.fragments.adapters;
 
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
@@ -8,8 +8,8 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 import androidx.fragment.app.*;
 
-import com.example.mikita.r423_reader.model.GalleryImage;
-import com.example.mikita.r423_reader.R;
+import by.mil.bsuir.r423_reader.model.GalleryImage;
+import by.mil.bsuir.r423_reader.R;
 
 import uk.co.senab.photoview.PhotoView;
 import uk.co.senab.photoview.PhotoViewAttacher;

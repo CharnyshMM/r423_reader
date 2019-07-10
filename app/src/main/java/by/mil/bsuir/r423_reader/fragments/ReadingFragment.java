@@ -1,4 +1,4 @@
-package com.example.mikita.r423_reader.fragments;
+package by.mil.bsuir.r423_reader.fragments;
 
 import android.annotation.TargetApi;
 import android.content.Context;
@@ -20,10 +20,10 @@ import androidx.annotation.Nullable;
 import android.os.Bundle;
 import androidx.fragment.app.Fragment;
 
-import com.example.mikita.r423_reader.activities.ContentsActivity;
-import com.example.mikita.r423_reader.R;
-import com.example.mikita.r423_reader.storage.Chapter;
-import com.example.mikita.r423_reader.storage.CurrentBookStorage;
+import by.mil.bsuir.r423_reader.activities.ContentsActivity;
+import by.mil.bsuir.r423_reader.R;
+import by.mil.bsuir.r423_reader.storage.Chapter;
+import by.mil.bsuir.r423_reader.storage.CurrentBookStorage;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
