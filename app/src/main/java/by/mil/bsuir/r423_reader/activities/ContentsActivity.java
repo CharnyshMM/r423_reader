@@ -3,6 +3,7 @@ package by.mil.bsuir.r423_reader.activities;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.util.Log;
+import android.view.MenuItem;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
@@ -27,6 +28,7 @@ public class ContentsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_contents);
 
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         contentsListView = findViewById(R.id.content__listView);
         contentsListView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
 
@@ -74,4 +76,14 @@ public class ContentsActivity extends AppCompatActivity {
         });
         builder.create().show();
     }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                this.onBackPressed();
+                return true;
+        }
+        return false;
+    }
+
 }

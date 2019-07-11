@@ -1,9 +1,11 @@
 package by.mil.bsuir.r423_reader.fragments;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.content.res.AssetManager;
 import android.os.Bundle;
 import android.view.*;
+import android.widget.Button;
 import android.widget.ExpandableListAdapter;
 import android.widget.ExpandableListView;
 import android.widget.LinearLayout;
@@ -15,6 +17,7 @@ import java.util.regex.Pattern;
 
 import by.mil.bsuir.r423_reader.fragments.adapters.CustomExpandableBooksListAdapter;
 import by.mil.bsuir.r423_reader.R;
+import by.mil.bsuir.r423_reader.storage.BookEntry;
 
 import java.io.IOException;
 import java.util.*;
@@ -47,6 +50,16 @@ public class BooksFragment extends Fragment {
         }
     }
 
+    public BookEntry tryGetBookPathFromSharedPreferences() {
+        SharedPreferences sharedPref = this.getActivity().getPreferences(Context.MODE_PRIVATE);
+
+        //String wideViewMode = sharedPref.getBoolean(R.string.last_wideView_mode, false);
+        return new BookEntry(
+                sharedPref.getString(getString(R.string.last_book_name), null),
+                sharedPref.getString(getString(R.string.last_book_chapter), null)
+        );
+    }
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -55,6 +68,7 @@ public class BooksFragment extends Fragment {
 
         booksScrollView = view.findViewById(R.id.books_linearLayout);
         expandableListView = (ExpandableListView) view.findViewById(R.id.expandableListView);
+        Button continueReadingButton = view.findViewById(R.id.books__continue_reading_button);
 
         expandableListTitle = new ArrayList<String>();
         expandableListDetail = new HashMap<String, List<String>>();
@@ -116,7 +130,6 @@ public class BooksFragment extends Fragment {
                     int childPosition,
                     long id) {
                 /*
-
                 Intent intent = new Intent(getContext().getApplicationContext(), ReadingFragment.class);
                 intent.putExtra("book", book);
                 intent.putExtra("chapter", chapter);
@@ -124,11 +137,26 @@ public class BooksFragment extends Fragment {
                 String book = expandableListTitle.get(groupPosition);
                 String chapter = expandableListDetail.get(book).get(childPosition);
                 if(onBookSelectedListener != null) {
-                    onBookSelectedListener.onBookSelectedListener(book, chapter);
+                    onBookSelectedListener.onBookSelectedListener(new BookEntry(book, chapter));
                 }
                 return false;
             }
         });
+
+        final BookEntry lastReadBook = tryGetBookPathFromSharedPreferences();
+        if (lastReadBook.getName() != null) {
+            continueReadingButton.setText(getString(R.string.continue_reading)+ " \"" + lastReadBook.getName() + "\"");
+            continueReadingButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                if(onBookSelectedListener != null) {
+                    onBookSelectedListener.onBookSelectedListener(lastReadBook);
+                }
+                }
+            });
+        } else {
+            continueReadingButton.setVisibility(View.GONE);
+        }
 
         return view;
     }
@@ -143,7 +171,7 @@ public class BooksFragment extends Fragment {
 
 
     public interface OnBookSelectedListener {
-        void onBookSelectedListener(String book, String chapter);
+        void onBookSelectedListener(BookEntry book);
     }
 
     /*@Override

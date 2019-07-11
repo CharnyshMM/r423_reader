@@ -1,14 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout
+<LinearLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".fragments.BooksFragment"
-
+        android:orientation="vertical"
         android:background="@drawable/chevron_background"
 >
+
+        <Button
+                android:id="@+id/books__continue_reading_button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/continue_reading"
+                android:layout_margin="@dimen/text_margin"
+        />
 
         <ExpandableListView
                 xmlns:android="http://schemas.android.com/apk/res/android"
@@ -28,4 +36,4 @@
             <!--app:layout_anchorGravity="bottom|end"-->
             <!--app:srcCompat="@android:drawable/ic_dialog_email"/>-->
 
-</FrameLayout>
+</LinearLayout>

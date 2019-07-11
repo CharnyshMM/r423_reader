@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.content.Context;
 import android.os.AsyncTask;
+import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -115,6 +116,7 @@ public class FullscreenGalleryDetailActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_fullscreen_gallery_detail);
 
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         mVisible = true;
         mControlsView = findViewById(R.id.fullscreen_content_controls);
         mViewPager = findViewById(R.id.fullscreen_gallery_detail__container_viewPager);
@@ -275,6 +277,17 @@ public class FullscreenGalleryDetailActivity extends AppCompatActivity {
         mHideHandler.removeCallbacks(mHideRunnable);
         mHideHandler.postDelayed(mHideRunnable, delayMillis);
     }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                this.onBackPressed();
+                return true;
+        }
+        return false;
+    }
+
 }
 
 class DetailsLoaderAsyncTask extends AsyncTask<Void, Void, HashMap<String, String>> {

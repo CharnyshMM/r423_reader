@@ -15,6 +15,7 @@ import androidx.navigation.Navigation;
 
 import by.mil.bsuir.r423_reader.R;
 import by.mil.bsuir.r423_reader.fragments.BooksFragment;
+import by.mil.bsuir.r423_reader.storage.BookEntry;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import static androidx.navigation.ui.NavigationUI.setupWithNavController;
@@ -90,12 +91,10 @@ public class MainActivity extends AppCompatActivity implements BooksFragment.OnB
     }
 
     @Override
-    public void onBookSelectedListener(String book, String chapter) {
-        this.book = book;
-        this.chapter = chapter;
+    public void onBookSelectedListener(BookEntry book) {
         Bundle bundle = new Bundle();
-        bundle.putString("book", book);
-        bundle.putString("chapter", chapter);
+        bundle.putString("book", book.getName());
+        bundle.putString("chapter", book.getChapter());
         navController.navigate(R.id.fragment_reading, bundle);
     }
 }

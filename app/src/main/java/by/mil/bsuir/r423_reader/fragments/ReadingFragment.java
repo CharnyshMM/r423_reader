@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.AssetManager;
 import android.os.Build;
+import android.text.TextUtils;
 import android.util.JsonToken;
 import android.util.JsonReader;
 import android.util.Log;
@@ -22,6 +23,7 @@ import androidx.fragment.app.Fragment;
 
 import by.mil.bsuir.r423_reader.activities.ContentsActivity;
 import by.mil.bsuir.r423_reader.R;
+import by.mil.bsuir.r423_reader.storage.BookEntry;
 import by.mil.bsuir.r423_reader.storage.Chapter;
 import by.mil.bsuir.r423_reader.storage.CurrentBookStorage;
 import com.google.gson.Gson;
@@ -81,17 +83,24 @@ public class ReadingFragment extends Fragment {
         webSettings.setBuiltInZoomControls(true);
         webSettings.setDisplayZoomControls(false);
         webView.setInitialScale(INITIAL_SCALE);
-        String book = null;
-        String chapter = null;
-        Bundle b = getArguments();
-        if (b != null) {
-            book = b.getString("book");
-            chapter = b.getString("chapter");
-        }
-        String bookName = getBookPathToOpen(book, chapter);
-        getActivity().setTitle(bookName);
 
-        webView.loadUrl(BOOKS_ASSET_PATH + "/" + bookName + BOOK_INDEX_FILENAME);
+        Bundle b = getArguments();
+        BookEntry book = null;
+        if (b != null) {
+            book = new BookEntry(b.getString("book"), b.getString("chapter"));
+        }
+        if (book != null && book.getPath() != null) {
+            openBook(book);
+            return  view;
+        }
+
+        openBook(openAnyBook());
+        return view;
+    }
+
+    public void openBook(BookEntry book) {
+        getActivity().setTitle(book.getPath());
+        webView.loadUrl(BOOKS_ASSET_PATH + "/" + book.getPath() + BOOK_INDEX_FILENAME);
         webView.setWebViewClient(new WebViewClient() {
 
             public void onPageFinished(WebView view, String url) {
@@ -99,13 +108,8 @@ public class ReadingFragment extends Fragment {
                 getChaptersJson();
             }
         });
-
-        saveBookPathToSharedPreferences(bookName);
-
-
-        return view;
+        saveBookPathToSharedPreferences(book);
     }
-
 
     public void getChaptersJson() {
         // this code is to run JavaScript code from the string above and get its result
@@ -124,22 +128,16 @@ public class ReadingFragment extends Fragment {
                 });
     }
 
-    public void saveBookPathToSharedPreferences(String book) {
+    public void saveBookPathToSharedPreferences(BookEntry book) {
         SharedPreferences sharedPref = this.getActivity().getPreferences(Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPref.edit();
-        editor.putString(getString(R.string.last_book_path), book);
+        editor.putString(getString(R.string.last_book_name), book.getName());
+        editor.putString(getString(R.string.last_book_chapter), book.getChapter());
         editor.apply();
     }
 
-    public String tryGetBookPathFromSharedPreferences() {
-        SharedPreferences sharedPref = this.getActivity().getPreferences(Context.MODE_PRIVATE);
 
-        String book = sharedPref.getString(getString(R.string.last_book_path), null);
-        //String wideViewMode = sharedPref.getBoolean(R.string.last_wideView_mode, false);
-        return book;
-    }
-
-    public String getBookPathToOpen(String book, String chapter) {
+    public BookEntry openAnyBook() {
         // if lastOpenedBookPath is null, than returning first book in books
         // for the first book drilling down till index file found.
 
@@ -152,39 +150,27 @@ public class ReadingFragment extends Fragment {
          *                                         / *
          * */
 
-        if (book != null && chapter != null) {
-            return book + "/" + chapter + "/";
-        }
-
-        if (book != null) {
-            return book + "/";
-        }
-
-        book = tryGetBookPathFromSharedPreferences();
-        if (book != null) {
-            return book;
-        }
-
         AssetManager assetManager = this.getContext().getAssets();
         try {
-            StringBuilder currentPath = new StringBuilder();
+            BookEntry book = new BookEntry();
+            ArrayList<String> currentPath = new ArrayList<>();
             String[] assetFiles = assetManager.list("books");
             if (assetFiles == null) {
                 throw new Exception("No books found in assets!");
             }
-            boolean indexFound = false;
-            while (!indexFound) {
+
+            book.setName(assetFiles[0]);
+            assetFiles = assetManager.list("books/" + book.getPath());
+            while (true) {
                 // sorry, I didn't found a better way to check if the entry is file or directory
                 // so if I didn't found index.htm, than I open first found file as a directory
                 for (String file : assetFiles) {
                     if (file.endsWith(BOOK_INDEX_FILENAME)) {
-                        return currentPath.toString();
+                        return book;
                     }
                 }
-
-                currentPath.append(assetFiles[0]);
-                assetFiles = assetManager.list("books/" + currentPath.toString());
-                currentPath.append("/");
+                book.setChapter(assetFiles[0]);
+                assetFiles = assetManager.list("books/" + book.getPath());
             }
         } catch (IOException e) {
             // show error dialog

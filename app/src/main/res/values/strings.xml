@@ -13,7 +13,7 @@
     <string name="title_activity_detail">DetailActivity</string>
     <string name="section_format">Hello World from section: %1$d</string>
     <string name="gallery">Gallery</string>
-    <string name="last_book_path" translatable="false">last_book_path</string>
+    <string name="last_book_name" translatable="false">last_book_name</string>
     <string name="last_wideView_mode" translatable="false">last_wideView_mode</string>
     <string name="error_image_not_loaded">Error! Image failed to load</string>
 
@@ -33,4 +33,6 @@
     <string name="message_press_back_again_to_exit">Press BACK again to exit</string>
     <string name="maximum_font_size_achieved">Maximum font size reached</string>
     <string name="minimum_font_size_reached">Minimun font size reached</string>
+    <string name="continue_reading">Continue reading</string>
+    <string name="last_book_chapter" translatable="false">last_book_chapter</string>
 </resources>
