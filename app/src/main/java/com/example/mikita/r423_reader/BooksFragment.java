@@ -10,11 +10,11 @@ import android.widget.LinearLayout;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
 import java.util.concurrent.locks.ReentrantLock;
 
 public class BooksFragment extends Fragment {
@@ -83,6 +83,20 @@ public class BooksFragment extends Fragment {
                     }
                     chapters.add(chapterDir);
                 }
+                Collections.sort(chapters, new Comparator<String>() {
+                    @Override
+                    public int compare(String o1, String o2) {
+                        Pattern p = Pattern.compile("^[0-9]+");
+                        Matcher m1 = p.matcher(o1);
+                        Matcher m2 = p.matcher(o2);
+                        if (m1.lookingAt() && m2.lookingAt()) {
+                            int n1 = Integer.parseInt(m1.group());
+                            int n2 = Integer.parseInt(m2.group());
+                            return Integer.compare(n1, n2);
+                        }
+                        return o1.compareTo(o2);
+                    }
+                });
                 expandableListTitle.add(bookDir);
                 expandableListDetail.put(bookDir, chapters);
             }
