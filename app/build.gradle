@@ -35,5 +35,6 @@ dependencies {
     implementation 'com.github.chrisbanes.photoview:library:+'
     implementation 'android.arch.navigation:navigation-fragment:1.0.0-alpha09'
     implementation 'android.arch.navigation:navigation-ui:1.0.0-alpha09'
+    implementation project(path: ':ctrs_schemes')
 // which version to stop on
 }

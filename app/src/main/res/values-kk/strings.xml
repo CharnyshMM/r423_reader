@@ -23,4 +23,5 @@
     <string name="continue_reading">Оқуды жалғастырыңыз</string>
     <string name="title">R-423-1 сандық тропосфералық радиостанция</string>
     <string name="subtitle">Android-платформасында CTRS R-423-1 зерттеудің оқу-әдістемелік кешені</string>
+    <string name="schemes_app_name">Схемалар</string>
 </resources>

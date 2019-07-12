@@ -22,4 +22,5 @@
     <string name="continue_reading">Продолжить читать</string>
     <string name="title">Цифровая тропосферная радиостанция Р-423-1</string>
     <string name="subtitle">Учебно-методический комплекс по изучению ЦТРС Р-423-1 на платформе Android</string>
+    <string name="schemes_app_name">Схемы</string>
 </resources>

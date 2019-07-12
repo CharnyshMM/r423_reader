@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
+        android:id="@+id/schemes_app"
+        android:title="@string/schemes_app_name"
+        android:icon="@drawable/icon_schemes_app"
+        />
+
+    <item
         android:id="@+id/fragment_books"
         android:icon="@drawable/icon_book"
         android:title="@string/title_activity_books" />

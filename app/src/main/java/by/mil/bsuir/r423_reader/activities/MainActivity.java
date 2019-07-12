@@ -1,10 +1,12 @@
 package by.mil.bsuir.r423_reader.activities;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import android.os.Handler;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -16,6 +18,8 @@ import androidx.navigation.Navigation;
 import by.mil.bsuir.r423_reader.R;
 import by.mil.bsuir.r423_reader.fragments.BooksFragment;
 import by.mil.bsuir.r423_reader.storage.BookEntry;
+import com.example.igor.ctrs.Main_Menu;
+import com.example.igor.ctrs.main_activity;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import static androidx.navigation.ui.NavigationUI.setupWithNavController;
@@ -41,7 +45,26 @@ public class MainActivity extends AppCompatActivity implements BooksFragment.OnB
         //bottomNavigationView.getMenu().setGroupCheckable(0, true, true);
 
         navController = Navigation.findNavController(this, R.id.nav_host_fragment);
-        setupWithNavController(bottomNavigationView, navController);
+
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+
+                switch (menuItem.getItemId()) {
+                    case R.id.schemes_app:
+                        Intent i = new Intent(getApplicationContext(), Main_Menu.class);
+                        startActivity(i);
+                        return false;
+                    case R.id.fragment_books:
+                        navController.navigate(R.id.fragment_books);
+                        return true;
+                    case R.id.fragment_gallery:
+                        navController.navigate(R.id.fragment_gallery);
+                        return true;
+                }
+                return false;
+            }
+        });
 
 
         navController.addOnDestinationChangedListener(new NavController.OnDestinationChangedListener() {

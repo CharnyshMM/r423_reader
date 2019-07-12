@@ -1,23 +1,23 @@
 <resources>
-    <string name="navigation_drawer_open">Open navigation drawer</string>
-    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="navigation_drawer_open" translatable="false">Open navigation drawer</string>
+    <string name="navigation_drawer_close" translatable="false">Close navigation drawer</string>
     <string name="app_name">R 423</string>
     <string name="increase_text_string">Increase text</string>
     <string name="decrease_text_string">Decrease text</string>
     <string name="contents_string">Contents</string>
     <string name="books_string">Books</string>
     <string name="title_activity_books">Books</string>
-    <string name="action_settings">Settings</string>
+    <string name="action_settings" translatable="false">Settings</string>
     <string name="error_title">Error</string>
     <string name="error_message_no_chapters_generated">Can\'t build contents list for this document</string>
-    <string name="title_activity_detail">DetailActivity</string>
-    <string name="section_format">Hello World from section: %1$d</string>
+    <string name="title_activity_detail" translatable="false">DetailActivity</string>
+    <string name="section_format" translatable="false">Hello World from section: %1$d</string>
     <string name="gallery">Gallery</string>
     <string name="last_book_name" translatable="false">last_book_name</string>
     <string name="last_wideView_mode" translatable="false">last_wideView_mode</string>
     <string name="error_image_not_loaded">Error! Image failed to load</string>
 
-    <string name="title_activity_fullscreen_gallery_detail">FullscreenGalleryDetailActivity</string>
+    <string name="title_activity_fullscreen_gallery_detail" translatable="false">FullscreenGalleryDetailActivity</string>
     <string name="fullscreen_gallery_detail__info_button">Description</string>
 
     <string name="hide">Hide</string>
@@ -25,11 +25,11 @@
     <string name="error__no_description_for_image">Error! No decription provided for this image</string>
     <string name="wide_view_toggle">Wide view</string>
     <string name="back_to_reading">Back to reading</string>
-    <string name="now_reading">Now reading</string>
-    <string name="resources">Resources</string>
+    <string name="now_reading" translatable="false">Now reading</string>
+    <string name="resources" translatable="false">Resources</string>
 
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="hello_blank_fragment" translatable="false">Hello blank fragment</string>
     <string name="message_press_back_again_to_exit">Press BACK again to exit</string>
     <string name="maximum_font_size_achieved">Maximum font size reached</string>
     <string name="minimum_font_size_reached">Minimun font size reached</string>
@@ -38,4 +38,5 @@
     <string name="title">Digital Tropospheric Radiostation R-423-1</string>
     <string name="subtitle">Educational and methodical complex for the study of CTRS R-423-1 on the Android platform
     </string>
+    <string name="schemes_app_name">Schemes</string>
 </resources>

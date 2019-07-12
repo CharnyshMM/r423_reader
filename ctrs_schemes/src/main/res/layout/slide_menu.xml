@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/slide_menu_layout"
+                android:visibility="invisible"
+                android:layout_width="260dp"
+                android:layout_height="match_parent">
+        <ScrollView
+                android:layout_width="match_parent"
+                android:fillViewport="true"
+                android:layout_height="match_parent">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:background="@color/primary_material_dark"
+                    android:weightSum="3000">
+                    <Button
+                        android:id="@+id/o2_48"
+                        android:textAllCaps="false"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@android:color/black"
+                        android:textColor="@android:color/white"
+                        android:text="@string/o2sp48" />
+                    <Button
+                        android:id="@+id/o2_480"
+                        android:textAllCaps="false"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@android:color/black"
+                        android:textColor="@android:color/white"
+                        android:text="@string/o2sp480" />
+                    <Button
+                            android:id="@+id/o2_2x480"
+                            android:textAllCaps="false"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@android:color/black"
+                            android:textColor="@android:color/white"
+                            android:text="@string/o2sp2x480" />
+                    <Button
+                        android:id="@+id/o2_2048"
+                        android:textAllCaps="false"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@android:color/black"
+                        android:textColor="@android:color/white"
+                        android:text="@string/o2sp2048" />
+                    <Button
+                            android:id="@+id/r2_48"
+                            android:textAllCaps="false"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@android:color/black"
+                            android:textColor="@android:color/white"
+                            android:text="@string/r2sp48" />
+                    <Button
+                            android:id="@+id/r2_480"
+                            android:textAllCaps="false"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@android:color/black"
+                            android:textColor="@android:color/white"
+                            android:text="@string/r2sp480" />
+                    <Button
+                            android:id="@+id/r2_2x480"
+                            android:textAllCaps="false"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@android:color/black"
+                            android:textColor="@android:color/white"
+                            android:text="@string/r2sp2x480" />
+                    <Button
+                            android:id="@+id/r2_2048"
+                            android:textAllCaps="false"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@android:color/black"
+                            android:textColor="@android:color/white"
+                            android:text="@string/r2sp2048" />
+                    <Button
+                            android:id="@+id/u2_480dir1"
+                            android:textAllCaps="false"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@android:color/black"
+                            android:textColor="@android:color/white"
+                            android:text="@string/u2sp480dir1" />
+                    <Button
+                        android:id="@+id/u2_480dir2"
+                        android:textAllCaps="false"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@android:color/black"
+                        android:textColor="@android:color/white"
+                        android:text="@string/u2sp480dir2" />
+                    <Button
+                            android:id="@+id/u2_2x480dir1"
+                            android:textAllCaps="false"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@android:color/black"
+                            android:textColor="@android:color/white"
+                            android:text="@string/u2sp2x480dir1"/>
+                    <Button
+                        android:id="@+id/u2_2x480dir2"
+                        android:textAllCaps="false"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@android:color/black"
+                        android:textColor="@android:color/white"
+                        android:text="@string/u2sp2x480dir2"/>
+                    <Button
+                            android:id="@+id/u2_2048dir1"
+                            android:textAllCaps="false"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@android:color/black"
+                            android:textColor="@android:color/white"
+                            android:text="@string/u2sp2048dir1" />
+                    <Button
+                        android:id="@+id/u2_2048dir2"
+                        android:textAllCaps="false"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@android:color/black"
+                        android:textColor="@android:color/white"
+                        android:text="@string/u2sp2048dir2" />
+                    <Button
+                            android:id="@+id/o1_48A"
+                            android:textAllCaps="false"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@android:color/black"
+                            android:textColor="@android:color/white"
+                            android:text="@string/o1sp48a" />
+                    <Button
+                        android:id="@+id/r1_48"
+                        android:textAllCaps="false"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@android:color/black"
+                        android:textColor="@android:color/white"
+                        android:text="@string/r1sp48" />
+                    <Button
+                            android:id="@+id/r1_480"
+                        android:textAllCaps="false"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@android:color/black"
+                        android:textColor="@android:color/white"
+                        android:text="@string/r1sp480" />
+                    <Button
+                            android:id="@+id/r1_2x480"
+                            android:textAllCaps="false"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@android:color/black"
+                            android:textColor="@android:color/white"
+                            android:text="@string/r1sp2x480" />
+                    <Button
+                            android:id="@+id/r1_2048"
+                            android:textAllCaps="false"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@android:color/black"
+                            android:textColor="@android:color/white"
+                            android:text="@string/r1sp2048" />
+                    <Button
+                            android:id="@+id/u1_480"
+                            android:textAllCaps="false"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@android:color/black"
+                            android:textColor="@android:color/white"
+                            android:text="@string/u1sp480" />
+                    <Button
+                            android:id="@+id/u1_2x480"
+                            android:textAllCaps="false"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@android:color/black"
+                            android:textColor="@android:color/white"
+                            android:text="@string/u1sp2x480" />
+
+
+                </LinearLayout>
+        </ScrollView>
+        <FrameLayout
+                android:layout_width="wrap_content"
+                android:layout_weight="10"
+                android:background="#88ff22"
+                android:layout_height="match_parent"/>
+
+
+
+</RelativeLayout>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.igor.ctrs" >
+
+    <application
+        android:allowBackup="true"
+        android:largeHeap="true"
+        android:label="@string/app_name"
+        android:icon="@mipmap/ic_launcher"
+        android:theme="@style/AppTheme" >
+
+        <activity android:name=".Activity_Picture"
+            android:screenOrientation="landscape"/>
+
+        <activity android:name=".BlockInfo"
+            android:screenOrientation="landscape"/>
+
+        <activity
+                android:name=".Main_Menu"
+                android:screenOrientation="landscape"/>
+
+        <activity
+            android:name=".main_activity"
+            android:screenOrientation="landscape" >
+        </activity>
+        <activity
+            android:name=".FilterAnimation"
+            android:screenOrientation="landscape"/>
+        <activity
+            android:name=".splash"
+            android:screenOrientation="portrait" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>
