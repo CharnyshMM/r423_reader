@@ -20,7 +20,7 @@
     <string name="title_activity_fullscreen_gallery_detail">FullscreenGalleryDetailActivity</string>
     <string name="fullscreen_gallery_detail__info_button">Description</string>
 
-    <string name="understood">Understood!</string>
+    <string name="hide">Hide</string>
     <string name="error__descriptions_not_loaded">Descriptions not loaded. Please try on another image</string>
     <string name="error__no_description_for_image">Error! No decription provided for this image</string>
     <string name="wide_view_toggle">Wide view</string>
@@ -35,4 +35,7 @@
     <string name="minimum_font_size_reached">Minimun font size reached</string>
     <string name="continue_reading">Continue reading</string>
     <string name="last_book_chapter" translatable="false">last_book_chapter</string>
+    <string name="title">Digital Tropospheric Radiostation R-423-1</string>
+    <string name="subtitle">Educational and methodical complex for the study of CTRS R-423-1 on the Android platform
+    </string>
 </resources>

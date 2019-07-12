@@ -23,7 +23,7 @@
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             style="@android:style/Widget.Material.Button.Borderless.Colored"
-            android:text="@string/understood"
+            android:text="@string/hide"
     />
     <ScrollView
             android:id="@+id/gallery_detail_info__description_scrollView"

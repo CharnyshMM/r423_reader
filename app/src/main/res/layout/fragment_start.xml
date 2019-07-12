@@ -19,7 +19,7 @@
                     android:id="@+id/start_fragment__project_title_textView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Тропосферная радиостанция Р-423"
+                    android:text="@string/title"
                     android:textAlignment="center"
                     android:fontFamily="serif"
                     android:textSize="27sp"
@@ -31,8 +31,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/start_fragment__project_title_textView"
-                    android:text="Электронно-методический комплекс для
-                     платформы Android"
+                    android:text="@string/subtitle"
                     android:textAlignment="center"
                     android:fontFamily="serif"
                     android:textSize="25sp"
@@ -74,7 +73,7 @@
                             android:text="начальник цикла"
                     />
                     <TextView
-                            android:text="Гуз И."
+                            android:text="Гуз И.П."
                     />
                 </TableRow>
                 <TableRow>
@@ -87,27 +86,29 @@
                     />
                 </TableRow>
                 <TableRow>
-
-                <TextView
-                        android:layout_column="2"
-                        android:text="Черныш Н.Н."
-                />
-            </TableRow>
+                    <TextView
+                            android:layout_column="2"
+                            android:text="Машуков Н.А."
+                    />
+                </TableRow>
                 <TableRow>
-
+                    <TextView
+                            android:layout_column="2"
+                            android:text="Френкель М.Г."
+                    />
+                </TableRow>
+                <TableRow>
                     <TextView
                             android:layout_column="2"
                             android:text="Черныш Н.Н."
                     />
                 </TableRow>
                 <TableRow>
-
                     <TextView
                             android:layout_column="2"
-                            android:text="Черныш Н.Н."
+                            android:text="Шепелевич С.А."
                     />
                 </TableRow>
-
             </TableLayout>
             <!--End-->
 </RelativeLayout>

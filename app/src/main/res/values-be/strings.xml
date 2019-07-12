@@ -11,7 +11,7 @@
     <string name="gallery">Галерэя</string>
     <string name="error_image_not_loaded">Памылка! Не атрымалася загрузіць выяву</string>
     <string name="fullscreen_gallery_detail__info_button">Апісанне</string>
-    <string name="understood">Зразумеў</string>
+    <string name="hide">Схаваць</string>
     <string name="error__descriptions_not_loaded">"Апісанні не загружаныя. Пачакайце, калі ласка!\n "</string>
     <string name="error__no_description_for_image">Памылка! Няма апісання для гэтага фатаздымка</string>
     <string name="wide_view_toggle">Шырокі агляд</string>
@@ -20,4 +20,6 @@
     <string name="maximum_font_size_achieved">Гэта найвялікшы памер шрыфту</string>
     <string name="minimum_font_size_reached">Гэта найменьшы памер шрыфту</string>
     <string name="continue_reading">Працягнуць чытаць</string>
+    <string name="title">Лічбавая трапасферная радыестанцыя Р-423</string>
+    <string name="subtitle">Вучэбна-метадычны комплекс па вывучэнні ЛТРС-423-1 на платформе Android</string>
 </resources>

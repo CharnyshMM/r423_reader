@@ -11,7 +11,7 @@
     <string name="gallery">Галерея</string>
     <string name="error_image_not_loaded">Ошибка! Не удалось загрузить это фото</string>
     <string name="fullscreen_gallery_detail__info_button">Описание</string>
-    <string name="understood">Понял!</string>
+    <string name="hide">Свернуть</string>
     <string name="error__descriptions_not_loaded">"Описания не загружены. Подождите пожалуйста!\n "</string>
     <string name="error__no_description_for_image">Ошибка! Нет описания для этой фотографии</string>
     <string name="wide_view_toggle">Широкий обзор</string>
@@ -20,4 +20,6 @@
     <string name="maximum_font_size_achieved">Это наибольший размер шрифта</string>
     <string name="minimum_font_size_reached">Это наименьший размер шрифта</string>
     <string name="continue_reading">Продолжить читать</string>
+    <string name="title">Цифровая тропосферная радиостанция Р-423-1</string>
+    <string name="subtitle">Учебно-методический комплекс по изучению ЦТРС Р-423-1 на платформе Android</string>
 </resources>
