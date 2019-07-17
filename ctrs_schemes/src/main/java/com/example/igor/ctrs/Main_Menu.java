@@ -72,6 +72,7 @@ public class Main_Menu  extends AppCompatActivity implements View.OnClickListene
 
         initializeButtons();
 
+
         sliderAnimation = new FilterAnimation(this);
         sliderAnimation.initializeAnimations(sliderLayout, mainLayout, 0);
     }

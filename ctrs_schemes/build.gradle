@@ -20,6 +20,7 @@ android {
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
-    implementation files('libs/PhotoView/gradle/wrapper/gradle-wrapper.jar')
+//    implementation files('libs/PhotoView/gradle/wrapper/gradle-wrapper.jar')
+    implementation 'com.github.chrisbanes.photoview:library:1.2.4'
     implementation 'androidx.appcompat:appcompat:1.0.0'
 }
