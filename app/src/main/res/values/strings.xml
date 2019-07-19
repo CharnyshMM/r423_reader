@@ -1,7 +1,7 @@
 <resources>
     <string name="navigation_drawer_open" translatable="false">Open navigation drawer</string>
     <string name="navigation_drawer_close" translatable="false">Close navigation drawer</string>
-    <string name="app_name">R 423</string>
+    <string name="app_name">R-423-1</string>
     <string name="increase_text_string">Increase text</string>
     <string name="decrease_text_string">Decrease text</string>
     <string name="contents_string">Contents</string>
@@ -35,7 +35,7 @@
     <string name="minimum_font_size_reached">Minimun font size reached</string>
     <string name="continue_reading">Continue reading</string>
     <string name="last_book_chapter" translatable="false">last_book_chapter</string>
-    <string name="title">Digital Tropospheric Radiostation R-423-1</string>
+    <string name="title">Digital Tropospheric station R-423-1</string>
     <string name="subtitle">Educational and methodical complex for the study of DTRS R-423-1 on the Android platform</string>
     <string name="schemes_app_name">Schemes</string>
 </resources>

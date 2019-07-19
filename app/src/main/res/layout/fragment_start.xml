@@ -24,7 +24,7 @@
                     android:fontFamily="serif"
                     android:textSize="27sp"
                     android:textColor="@color/colorPrimaryDark"
-            />
+                    android:textStyle="bold"/>
 
             <TextView
                     android:id="@+id/start_fragment__project_subtitle_textView"
@@ -34,9 +34,10 @@
                     android:text="@string/subtitle"
                     android:textAlignment="center"
                     android:fontFamily="serif"
-                    android:textSize="25sp"
+                    android:minLines="3"
+                    android:textSize="24sp"
                     android:textColor="@color/black_overlay"
-            />
+                    android:textAllCaps="false"/>
 
             <ImageView
                     android:id="@+id/start_fragment__chevron"

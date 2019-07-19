@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Р-423</string>
+    <string name="app_name">Р-423-1</string>
     <string name="increase_text_string">Мәтінді үлкейту</string>
     <string name="decrease_text_string">Мәтінді азайту</string>
     <string name="contents_string">Мазмұн</string>
@@ -21,7 +21,7 @@
     <string name="error_image_not_loaded">Қате! Бұл фотосуретті жүктеу сәтсіз аяқталды.</string>
     <string name="wide_view_toggle">Кең шолу</string>
     <string name="continue_reading">Оқуды жалғастырыңыз</string>
-    <string name="title">R-423-1 сандық тропосфералық радиостанция</string>
+    <string name="title">R-423-1 сандық тропосфералық станция</string>
     <string name="subtitle">Android-платформасында CTRS R-423-1 зерттеудің оқу-әдістемелік кешені</string>
     <string name="schemes_app_name">Схемалар</string>
 </resources>

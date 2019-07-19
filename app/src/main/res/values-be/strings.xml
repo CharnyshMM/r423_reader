@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Р-423</string>
+    <string name="app_name">Р-423-1</string>
     <string name="increase_text_string">Павялічыць тэкст</string>
     <string name="decrease_text_string">Паменьшыць тэкст</string>
     <string name="contents_string">Змест</string>
@@ -20,7 +20,7 @@
     <string name="maximum_font_size_achieved">Гэта найвялікшы памер шрыфту</string>
     <string name="minimum_font_size_reached">Гэта найменьшы памер шрыфту</string>
     <string name="continue_reading">Працягнуць чытаць</string>
-    <string name="title">Лічбавая трапасферная радыестанцыя Р-423</string>
-    <string name="subtitle">Вучэбна-метадычны комплекс па вывучэнні ЛТРС-423-1 на платформе Android</string>
+    <string name="title">Лічбавая трапасферная станцыя Р-423</string>
+    <string name="subtitle">Вучэбна-метадычны комплекс па вывучэнні ЛТРС-423-1\nна платформе Android</string>
     <string name="schemes_app_name">Схемы</string>
 </resources>
