@@ -35,7 +35,7 @@
                     android:textAlignment="center"
                     android:fontFamily="serif"
                     android:minLines="3"
-                    android:textSize="24sp"
+                    android:textSize="20sp"
                     android:textColor="@color/black_overlay"
                     android:textAllCaps="false"/>
 
@@ -57,59 +57,75 @@
                     android:layout_marginHorizontal="@dimen/text_margin"
                     android:layout_below="@id/start_fragment__chevron"
                     android:layout_alignParentBottom="true"
-                    android:stretchColumns="1"
+                    android:stretchColumns="0"
             >
                 <TableRow>
                     <TextView
-                        android:layout_column="1"
+                        android:layout_column="0"
+                        android:textStyle="bold"
                         android:text="Руководитель:"
                     />
                     <TextView
-                        android:text="Исполнители:"
+                            android:textStyle="bold"
+                            android:text="Ответственный"
                     />
                 </TableRow>
                 <TableRow>
                     <TextView
-                            android:layout_column="1"
+                            android:layout_column="0"
                             android:text="начальник цикла"
                     />
                     <TextView
-                            android:text="Гуз И.П."
+                            android:textStyle="bold"
+                            android:text="исполнитель:"
                     />
                 </TableRow>
                 <TableRow>
                     <TextView
-                            android:layout_column="1"
+                            android:layout_column="0"
                             android:text="Романовский С.В."
                     />
                     <TextView
-                            android:text="Линник Г.И."
-                    />
-                </TableRow>
-                <TableRow>
-                    <TextView
-                            android:layout_column="2"
-                            android:text="Машуков Н.А."
-                    />
-                </TableRow>
-                <TableRow>
-                    <TextView
-                            android:layout_column="2"
-                            android:text="Френкель М.Г."
-                    />
-                </TableRow>
-                <TableRow>
-                    <TextView
-                            android:layout_column="2"
                             android:text="Черныш Н.Н."
                     />
                 </TableRow>
                 <TableRow>
                     <TextView
-                            android:layout_column="2"
+                            android:textAlignment="center"
+                            android:textStyle="bold"
+                            android:layout_span="2"
+                            android:text="Исполнители:"
+                    />
+
+
+                </TableRow>
+                <TableRow>
+                    <TextView
+                            android:layout_column="0"
+                            android:text="Гуз И.П."
+                    />
+                    <TextView
+                            android:layout_column="1"
+                            android:text="Линник Г.И."
+                    />
+                </TableRow>
+                <TableRow>
+                    <TextView
+                            android:layout_column="0"
+                            android:text="Машуков Н.А."
+                    />
+                    <TextView
+                            android:layout_column="1"
+                            android:text="Френкель М.Г."
+                    />
+                </TableRow>
+                <TableRow>
+                    <TextView
+                            android:layout_column="0"
                             android:text="Шепелевич С.А."
                     />
                 </TableRow>
+
             </TableLayout>
             <!--End-->
 </RelativeLayout>
