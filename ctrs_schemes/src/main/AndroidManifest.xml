@@ -9,21 +9,21 @@
          >
 
         <activity android:name=".Activity_Picture"
-            android:theme="@style/Theme.AppCompat.NoActionBar"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
             android:screenOrientation="landscape"/>
 
         <activity android:name=".BlockInfo"
-            android:theme="@style/Theme.AppCompat.NoActionBar"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
             android:screenOrientation="landscape"/>
 
         <activity
                 android:name=".Main_Menu"
-                android:theme="@style/Theme.AppCompat.NoActionBar"
+                android:theme="@style/Theme.AppCompat.Light.NoActionBar"
                 android:screenOrientation="landscape"/>
 
         <activity
             android:name=".main_activity"
-            android:theme="@style/Theme.AppCompat.NoActionBar"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
             android:screenOrientation="landscape" >
         </activity>
         <activity
