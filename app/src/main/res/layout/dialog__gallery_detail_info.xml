@@ -6,16 +6,7 @@
               android:gravity="center"
               style="@style/Animation.AppCompat.Tooltip"
               >
-    <TextView
-            android:id="@+id/gallery_detail_info__name_textView"
-            android:layout_height="wrap_content"
-            android:layout_width="match_parent"
-            android:textStyle="bold"
-            android:text="Vnutri/stoika"
-            android:layout_alignParentTop="true"
-            android:padding="@dimen/text_margin"
-            style="@android:style/TextAppearance.DeviceDefault.Large"
-    />
+
     <Button
             android:id="@+id/gallery_detail_info__understood_button"
             android:layout_alignParentBottom="true"
@@ -29,10 +20,25 @@
             android:id="@+id/gallery_detail_info__description_scrollView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_below="@id/gallery_detail_info__name_textView"
+
             android:layout_above="@id/gallery_detail_info__understood_button"
             android:padding="@dimen/text_margin"
     >
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+        >
+        <TextView
+                android:id="@+id/gallery_detail_info__name_textView"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:textStyle="bold"
+                android:text="Vnutri/stoika"
+                android:layout_alignParentTop="true"
+                android:layout_marginBottom="@dimen/text_margin"
+                style="@android:style/TextAppearance.DeviceDefault.Large"
+        />
                 <TextView
                 android:id="@+id/gallery_detail_info__description_textView"
                 android:layout_height="wrap_content"
@@ -40,6 +46,7 @@
                 style="@android:style/TextAppearance.DeviceDefault.Medium"
         />
 
+        </LinearLayout>
     </ScrollView>
 
 </RelativeLayout>

@@ -247,11 +247,11 @@ public class FullscreenGalleryDetailActivity extends AppCompatActivity {
     private void showInfoDialog(String name, String description) {
         final Dialog dialog = new Dialog(this);
         dialog.setContentView(R.layout.dialog__gallery_detail_info);
-        dialog.setTitle("Title...");
+
 
         // set the custom dialog components - text, image and button
         TextView nameTextView = dialog.findViewById(R.id.gallery_detail_info__name_textView);
-        nameTextView.setText(name);
+        nameTextView.setText(getTitle());
 
         Button understoodButton = dialog.findViewById(R.id.gallery_detail_info__understood_button);
         understoodButton.setOnClickListener(new View.OnClickListener() {
