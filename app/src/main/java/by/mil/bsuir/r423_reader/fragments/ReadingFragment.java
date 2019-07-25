@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.AssetManager;
 import android.os.Build;
-import android.text.TextUtils;
 import android.util.JsonToken;
 import android.util.JsonReader;
 import android.util.Log;
@@ -47,8 +46,7 @@ public class ReadingFragment extends Fragment {
     private static final int MAXIMUM_TEXT_ZOOM = 150;
     private static final int MINIMUM_TEXT_ZOOM = 50;
     private static final int INITIAL_SCALE = 250;
-    private static final String ANDROID_ASSET_PATH_START = "file:///android_asset";
-    private static final String BOOKS_ASSET_PATH = "file:///android_asset/books";
+    private static final String ANDROID_ASSET_PATH = "file:///android_asset/";
     private static final String BOOK_INDEX_FILENAME = "index.htm";
 
     private static ReentrantLock locker = new ReentrantLock();
@@ -100,7 +98,7 @@ public class ReadingFragment extends Fragment {
 
     public void openBook(BookEntry book) {
         getActivity().setTitle(book.getPath());
-        webView.loadUrl(BOOKS_ASSET_PATH + "/" + book.getPath() + BOOK_INDEX_FILENAME);
+        webView.loadUrl(ANDROID_ASSET_PATH+ getString(R.string.assets_books_dir) + "/" + book.getPath() + BOOK_INDEX_FILENAME);
         webView.setWebViewClient(new WebViewClient() {
 
             public void onPageFinished(WebView view, String url) {
@@ -132,7 +130,7 @@ public class ReadingFragment extends Fragment {
         SharedPreferences sharedPref = this.getActivity().getPreferences(Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPref.edit();
         editor.putString(getString(R.string.last_book_name), book.getName());
-        editor.putString(getString(R.string.last_book_chapter), book.getChapter());
+        editor.putString(getString(R.string.last_book_chapter), book.getCurrentChapter());
         editor.apply();
     }
 
@@ -154,13 +152,13 @@ public class ReadingFragment extends Fragment {
         try {
             BookEntry book = new BookEntry();
             ArrayList<String> currentPath = new ArrayList<>();
-            String[] assetFiles = assetManager.list("books");
+            String[] assetFiles = assetManager.list(getString(R.string.assets_books_dir));
             if (assetFiles == null) {
                 throw new Exception("No books found in assets!");
             }
 
             book.setName(assetFiles[0]);
-            assetFiles = assetManager.list("books/" + book.getPath());
+            assetFiles = assetManager.list(getString(R.string.assets_books_dir)+"/" + book.getPath());
             while (true) {
                 // sorry, I didn't found a better way to check if the entry is file or directory
                 // so if I didn't found index.htm, than I open first found file as a directory
@@ -169,8 +167,8 @@ public class ReadingFragment extends Fragment {
                         return book;
                     }
                 }
-                book.setChapter(assetFiles[0]);
-                assetFiles = assetManager.list("books/" + book.getPath());
+                book.setCurrentChapter(assetFiles[0]);
+                assetFiles = assetManager.list(getString(R.string.assets_books_dir)+"/" + book.getPath());
             }
         } catch (IOException e) {
             // show error dialog

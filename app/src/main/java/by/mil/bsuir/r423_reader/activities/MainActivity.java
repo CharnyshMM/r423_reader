@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -19,7 +18,6 @@ import by.mil.bsuir.r423_reader.R;
 import by.mil.bsuir.r423_reader.fragments.BooksFragment;
 import by.mil.bsuir.r423_reader.storage.BookEntry;
 import com.example.igor.ctrs.Main_Menu;
-import com.example.igor.ctrs.main_activity;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import static androidx.navigation.ui.NavigationUI.setupWithNavController;
@@ -117,7 +115,7 @@ public class MainActivity extends AppCompatActivity implements BooksFragment.OnB
     public void onBookSelectedListener(BookEntry book) {
         Bundle bundle = new Bundle();
         bundle.putString("book", book.getName());
-        bundle.putString("chapter", book.getChapter());
+        bundle.putString("chapter", book.getCurrentChapter());
         navController.navigate(R.id.fragment_reading, bundle);
     }
 }

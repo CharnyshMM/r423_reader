@@ -38,4 +38,6 @@
     <string name="title">Digital Tropospheric station R-423-1</string>
     <string name="subtitle">Educational and methodical complex for the study of DTRS R-423-1 on the Android platform</string>
     <string name="schemes_app_name">Schemes</string>
+    <string name="assets_books_dir" translatable="false">books</string>
+    <string name="assets_gallery_dir" translatable="false">gallery</string>
 </resources>

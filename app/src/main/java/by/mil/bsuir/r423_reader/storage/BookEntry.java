@@ -1,6 +1,7 @@
 package by.mil.bsuir.r423_reader.storage;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class BookEntry { //TODO: suggest a better name for this class
     public BookEntry() {
@@ -12,11 +13,11 @@ public class BookEntry { //TODO: suggest a better name for this class
         this.chapter = chapter;
     }
 
-    public String getChapter() {
+    public String getCurrentChapter() {
         return chapter;
     }
 
-    public void setChapter(String chapter) {
+    public void setCurrentChapter(String chapter) {
         this.chapter = chapter;
     }
 
@@ -45,4 +46,14 @@ public class BookEntry { //TODO: suggest a better name for this class
 
     String chapter;
     String name;
+
+    public List<ContentsItem> getContents() {
+        return contents;
+    }
+
+    public void setContents(List<ContentsItem> contents) {
+        this.contents = contents;
+    }
+
+    List<ContentsItem> contents;
 }

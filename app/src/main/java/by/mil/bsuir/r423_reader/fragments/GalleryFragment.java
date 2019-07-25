@@ -23,8 +23,6 @@ import java.util.concurrent.locks.ReentrantLock;
 
 public class GalleryFragment extends Fragment {
 
-    private static final String ANDROID_ASSET_PATH_START = "file:///android_asset";
-    private static final String IMAGES_ASSET_PATH = "file:///android_asset/gallery";
     private RecyclerView mRecyclerView;
     private GalleryAdapter mAdapter;
 
@@ -59,16 +57,16 @@ public class GalleryFragment extends Fragment {
 
         final ArrayList<GalleryListItem> data = new ArrayList<>();
         try{
-            String[] paths = getContext().getAssets().list("gallery");
+            String[] paths = getContext().getAssets().list(getString(R.string.assets_gallery_dir));
             for (String path: paths){
                 boolean hasExtension = path.contains(".");
                 if (!hasExtension){
-                    String[] images = getContext().getAssets().list("gallery/" + path);
+                    String[] images = getContext().getAssets().list(getString(R.string.assets_gallery_dir)+"/" + path);
                     if (images.length != 0){
                         data.add(new GalleryHeaderItem(path));
                         for (String img: images){
                             String name = path + "/" + img;
-                            data.add(new GalleryImageItem(new GalleryImage("gallery/" + name, name.replaceFirst("[.][^.]+$", ""))));
+                            data.add(new GalleryImageItem(new GalleryImage(getString(R.string.assets_gallery_dir)+"/" + name, name.replaceFirst("[.][^.]+$", ""))));
                         }
                     }
                 }

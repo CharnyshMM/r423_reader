@@ -82,10 +82,10 @@ public class BooksFragment extends Fragment {
         AssetManager assetManager = getContext().getAssets();
         String[] booksDirs = new String[0];
         try {
-            booksDirs = assetManager.list("books");
+            booksDirs = assetManager.list(getString(R.string.assets_books_dir));
 
             for (final String bookDir:booksDirs) {
-                String[] chapterDirs = assetManager.list("books/"+bookDir);
+                String[] chapterDirs = assetManager.list(getString(R.string.assets_books_dir)+"/"+bookDir);
                 ArrayList<String> chapters = new ArrayList<String>();
                 for (final String chapterDir:chapterDirs) {
                     // maybe the cycle is not optimal.. but I have to check if there is no index.htm file
