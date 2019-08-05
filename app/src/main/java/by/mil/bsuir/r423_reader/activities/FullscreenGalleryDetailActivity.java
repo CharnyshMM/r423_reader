@@ -322,7 +322,10 @@ class DetailsLoaderAsyncTask extends AsyncTask<Void, Void, HashMap<String, Strin
     protected HashMap<String, String> doInBackground(Void... voids) {
         String json = null;
         try {
-            InputStream is = contextRef.get().getAssets().open("gallery/descriptions.json");
+
+            InputStream is = contextRef.get().getAssets().open(
+                    contextRef.get().getString(R.string.assets_gallery_dir)+"/descriptions.json"
+            );
             int size = is.available();
             byte[] buffer = new byte[size];
             is.read(buffer);
